@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#120c0b" />
+  <meta name="description" content="Cuenta atrás para Roma — 17 de octubre de 2026" />
+  <title>Roma 2026 · Cuenta atrás</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇮🇹</text></svg>" />
+  <style>
+    :root {
+      --bg: #120c0b;
+      --card: rgba(255,255,255,.09);
+      --border: rgba(255,255,255,.16);
+      --text: #fff8f1;
+      --muted: rgba(255,248,241,.68);
+      --accent: #efb36a;
+      --accent2: #d76a4c;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(215,106,76,.28), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(239,179,106,.20), transparent 28%),
+        linear-gradient(145deg, #0d0807 0%, #1a0f0d 45%, #23120d 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 36rem;
+      height: 36rem;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .14;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    body::before { background: #ff8b5f; left: -18rem; bottom: -18rem; }
+    body::after  { background: #ffd38a; right: -20rem; top: -18rem; animation-delay: -5s; }
+
+    @keyframes drift {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(2rem,-1rem,0) scale(1.08); }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: max(24px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
+    }
+
+    .shell {
+      width: min(100%, 980px);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: .84rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .brand { display: flex; align-items: center; gap: 9px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 20px rgba(239,179,106,.85); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: clamp(26px, 5vw, 58px);
+      background: linear-gradient(180deg, rgba(255,255,255,.105), rgba(255,255,255,.055));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "ROMA";
+      position: absolute;
+      right: -14px;
+      bottom: -44px;
+      font-size: clamp(6rem, 21vw, 14rem);
+      font-weight: 900;
+      letter-spacing: -.08em;
+      color: rgba(255,255,255,.026);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.10);
+      font-size: .78rem;
+      color: #ffe6cb;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 800px;
+      font-size: clamp(2.55rem, 7vw, 6.6rem);
+      line-height: .94;
+      letter-spacing: -.055em;
+      font-weight: 800;
+    }
+
+    h1 span {
+      color: var(--accent);
+      text-shadow: 0 8px 28px rgba(239,179,106,.14);
+    }
+
+    .subtitle {
+      margin: 20px 0 0;
+      max-width: 610px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.18rem);
+      line-height: 1.65;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: clamp(30px, 6vw, 54px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .unit {
+      min-width: 0;
+      border-radius: 22px;
+      padding: clamp(18px, 4vw, 28px) 12px;
+      text-align: center;
+      background: rgba(10,7,6,.32);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .value {
+      display: block;
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(2.55rem, 8vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -.05em;
+      font-weight: 800;
+    }
+
+    .label {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: clamp(.7rem, 1.6vw, .84rem);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      color: rgba(255,248,241,.48);
+      font-size: .82rem;
+      padding: 0 4px;
+    }
+
+    .italy { letter-spacing: .12em; }
+    .heart { color: #ef745e; }
+
+    .arrived {
+      display: none;
+      margin-top: 32px;
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: clamp(1.35rem, 4vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .page { padding-left: 12px; padding-right: 12px; }
+      .hero { border-radius: 24px; padding: 24px 16px 22px; }
+      .countdown { gap: 8px; }
+      .unit { border-radius: 17px; padding: 18px 8px; }
+      .subtitle { line-height: 1.5; }
+      .topbar { padding: 0 4px; font-size: .72rem; }
+      .footer { flex-direction: column; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand"><span class="dot"></span><span>Roma 2026</span></div>
+        <div>17 · 10 · 2026</div>
+      </div>
+
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">✈️ Próxima parada · Roma, Italia</div>
+        <h1 id="title">La cuenta atrás para <span>Roma</span> ha comenzado.</h1>
+        <p class="subtitle">Cada minuto queda un poco menos para perderse por sus calles, descubrir su historia y brindar por el viaje. 🇮🇹</p>
+
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="unit"><span class="value" id="days">--</span><span class="label">Días</span></div>
+          <div class="unit"><span class="value" id="hours">--</span><span class="label">Horas</span></div>
+          <div class="unit"><span class="value" id="minutes">--</span><span class="label">Minutos</span></div>
+        </div>
+
+        <div class="arrived" id="arrived">Benvenuti a Roma! 🇮🇹✨</div>
+      </section>
+
+      <div class="footer">
+        <span>Cuenta atrás hasta el 17 de octubre de 2026 · 00:00</span>
+        <span class="italy">ROMA <span class="heart">♥</span></span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 17/10/2026 a las 00:00 en horario de Roma/Madrid (CEST, UTC+2 en esa fecha).
+    const target = new Date('2026-10-17T00:00:00+02:00').getTime();
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const countdownEl = document.getElementById('countdown');
+    const arrivedEl = document.getElementById('arrived');
+
+    const pad = n => String(n).padStart(2, '0');
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        countdownEl.style.display = 'none';
+        arrivedEl.style.display = 'block';
+        return;
+      }
+
+      const totalMinutes = Math.floor(diff / 60000);
+      const days = Math.floor(totalMinutes / (60 * 24));
+      const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+      const minutes = totalMinutes % 60;
+
+      daysEl.textContent = days;
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
