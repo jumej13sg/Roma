@@ -47,7 +47,7 @@
         <p class="subtitle">Cuenta atrás para perdernos por sus calles, disfrutar de buena comida y, lo más importante... ¡Disfrutar juntos!</p>
         <div class="hero-grid">
           <figure class="rome-photo" aria-label="Vista del Coliseo de Roma">
-            <img src="assets/colosseo.jpg" alt="Coliseo de Roma al atardecer" />
+            <img src="assets/places/coliseo.webp" alt="Coliseo de Roma al atardecer" />
             <figcaption class="photo-badge">Colosseo · Roma 🇮🇹</figcaption>
           </figure>
           <div class="countdown" id="countdown" aria-live="polite">
@@ -92,26 +92,32 @@
   updateCountdown();setInterval(updateCountdown,1000);
 
   const IMG={
-    maria:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg/660px-Basilica_di_Santa_Maria_Maggiore_-_Roma.jpg',
+    // Fotos locales seleccionadas para el viaje (incluidas en /assets/places/)
+    maria:'assets/places/santa-maria-maggiore.webp',
     spagna:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Piazza_di_Spagna_%28Rome%29_0004.jpg/660px-Piazza_di_Spagna_%28Rome%29_0004.jpg',
     trevi:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Trevi_Fountain_-_Roma.jpg/660px-Trevi_Fountain_-_Roma.jpg',
-    pantheon:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Pantheon_%28Rome%29_-_Right_side_and_front.jpg/660px-Pantheon_%28Rome%29_-_Right_side_and_front.jpg',
-    navona:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Piazza_Navona_%28Rome%29_at_night.jpg/660px-Piazza_Navona_%28Rome%29_at_night.jpg',
+    pantheon:'assets/places/panteon.webp',
+    navona:'assets/places/piazza-navona.webp',
+    vaticanos:'assets/places/museos-vaticanos.webp',
     sistina:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Sistina-interno.jpg/660px-Sistina-interno.jpg',
-    sanpietro:'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg/660px-Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg',
-    castel:'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Castel_Sant%27Angelo_at_Night.jpg/660px-Castel_Sant%27Angelo_at_Night.jpg',
-    campo:'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Campo_dei_Fiori.jpg/660px-Campo_dei_Fiori.jpg',
+    sanpietro:'assets/places/san-pedro.webp',
+    castel:'assets/places/castel-sant-angelo.webp',
+    prati:'assets/places/prati.webp',
+    campo:'assets/places/campo-de-fiori.webp',
     gesu:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Jesus_Church.jpg/660px-Jesus_Church.jpg',
     colonna:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Trevi_-_palazzo_colonna_e_basilica_santi_apostoli_01.JPG/660px-Trevi_-_palazzo_colonna_e_basilica_santi_apostoli_01.JPG',
-    corso:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Via_del_Corso_%2852501354470%29.jpg/660px-Via_del_Corso_%2852501354470%29.jpg',
-    gianicolo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Janiculum.jpg/660px-Janiculum.jpg',
-    trastevere:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Santa_Maria_in_Trastevere_fountain.jpg/660px-Santa_Maria_in_Trastevere_fountain.jpg',
-    vincoli:'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/San_Pietro_in_Vincoli_-_esterno.jpg/660px-San_Pietro_in_Vincoli_-_esterno.jpg',
-    colosseo:'assets/colosseo.jpg',
+    corso:'assets/places/via-del-corso.webp',
+    gianicolo:'assets/places/gianicolo.webp',
+    trastevere:'assets/places/trastevere.webp',
+    monti:'assets/places/monti.webp',
+    montinotte:'assets/places/monti-noche.webp',
+    vincoli:'assets/places/san-pietro-in-vincoli.webp',
+    colosseo:'assets/places/coliseo.webp',
     foro:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Foro_Romano_Musei_Capitolini_Roma.jpg/660px-Foro_Romano_Musei_Capitolini_Roma.jpg',
     palatino:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg/660px-Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg',
-    vittoriano:'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Vittoriano_Altare_della_Patria_2013-09-16.jpg/660px-Vittoriano_Altare_della_Patria_2013-09-16.jpg',
-    capitolini:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/0_Cordonata_-_Dioscuri_-_Palazzo_Senatorio.JPG/660px-0_Cordonata_-_Dioscuri_-_Palazzo_Senatorio.JPG',
+    vittoriano:'assets/places/vittoriano.webp',
+    campidoglio:'assets/places/campidoglio.webp',
+    capitolini:'assets/places/museos-capitolinos.webp',
     termini:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Roma_termini_01.jpg/660px-Roma_termini_01.jpg',
     fiumicino:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Rome%2C_Italy_ESA24383157_%28cropped%29.jpeg/660px-Rome%2C_Italy_ESA24383157_%28cropped%29.jpeg'
   };
@@ -127,13 +133,13 @@
       {name:'Fontana di Trevi',time:'Free tour',desc:'Una de las paradas estrella del recorrido por el corazón de Roma.',img:IMG.trevi},
       {name:'Piazza Navona',time:'Mediodía',desc:'Fin del free tour y unos minutos extra para disfrutar la plaza con calma.',img:IMG.navona},
       {name:'Panteón',time:'16:00',desc:'Visita al interior del Panteón, uno de los imprescindibles del viaje.',img:IMG.pantheon},
-      {name:'Monti',time:'20:00+',desc:'Cena y cervezas cerca del hotel: Il Fusto, Sacripante Art Gallery o Drink Kong.',icon:'🍻'}]},
+      {name:'Monti',time:'20:00+',desc:'Cena y cervezas cerca del hotel: Il Fusto, Sacripante Art Gallery o Drink Kong.',img:IMG.montinotte}]},
     lun19:{date:'Lunes 19',title:'Vaticano + Prati',route:'Museos Vaticanos → San Pedro → Borgo → Castel Sant’Angelo → Prati',tag:'Arte · Vaticano',places:[
-      {name:'Museos Vaticanos',time:'09:00',desc:'Mañana dedicada a las colecciones vaticanas y su recorrido monumental.',img:IMG.sistina},
+      {name:'Museos Vaticanos',time:'09:00',desc:'Mañana dedicada a las colecciones vaticanas y su recorrido monumental.',img:IMG.vaticanos},
       {name:'Capilla Sixtina',time:'Mañana',desc:'El gran cierre artístico de la visita a los Museos Vaticanos.',img:IMG.sistina},
       {name:'Plaza y Basílica de San Pedro',time:'12:20',desc:'Paseo por la plaza y exterior; entrada al interior si la cola acompaña.',img:IMG.sanpietro},
       {name:'Castel Sant’Angelo',time:'15:10',desc:'Paseo hasta el castillo y visita exterior antes de continuar a Prati.',img:IMG.castel},
-      {name:'Prati · Piazza Cavour',time:'Tarde',desc:'Paseo por el barrio y Via Cola di Rienzo entre calles comerciales.',icon:'🏛️'},
+      {name:'Prati · Piazza Cavour',time:'Tarde',desc:'Paseo por el barrio y Via Cola di Rienzo entre calles comerciales.',img:IMG.prati},
       {name:'Trevi de noche',time:'21:00+',desc:'Plan flexible: volver al centro para ver Trevi y Piazza di Spagna iluminadas.',img:IMG.trevi}]},
     mar20:{date:'Martes 20',title:'Centro histórico + Gianicolo + Trastevere',route:'Campo de’ Fiori → Gesù → Palazzo Colonna → Via del Corso → Gianicolo → Trastevere',tag:'Mercado · atardecer · noche',places:[
       {name:'Campo de’ Fiori',time:'09:00',desc:'Mercado matinal y ambiente de plaza para comenzar el día.',img:IMG.campo},
@@ -148,7 +154,8 @@
       {name:'Foro Romano',time:'Mediodía',desc:'Continuación por el corazón político y monumental de la Roma antigua.',img:IMG.foro},
       {name:'Palatino',time:'Mediodía',desc:'El recorrido del conjunto incluye también la colina del Palatino.',img:IMG.palatino},
       {name:'Vittoriano',time:'16:45',desc:'Exterior y terrazas inferiores del Monumento a Vittorio Emanuele II.',img:IMG.vittoriano},
-      {name:'Campidoglio + Museos Capitolinos',time:'17:20',desc:'Piazza del Campidoglio y visita a los Museos Capitolinos hasta el anochecer.',img:IMG.capitolini}]},
+      {name:'Piazza del Campidoglio',time:'17:20',desc:'Una de las plazas más monumentales de Roma, diseñada por Miguel Ángel.',img:IMG.campidoglio},
+      {name:'Museos Capitolinos',time:'17:35',desc:'Visita a los Museos Capitolinos hasta el anochecer.',img:IMG.capitolini}]},
     jue22:{date:'Jueves 22',title:'Regalos y aeropuerto',route:'Termini / Esquilino → Fiumicino',tag:'Últimas compras · vuelta',places:[
       {name:'Termini / Esquilino',time:'Mañana',desc:'Últimas compras de regalos alrededor del hotel y la estación.',img:IMG.termini},
       {name:'Via Nazionale',time:'Mañana',desc:'Último paseo y compras por una de las zonas previstas antes de salir.',icon:'🛍️'},

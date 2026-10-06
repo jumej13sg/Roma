@@ -1,12 +1,11 @@
-# Roma 2026 · Cuenta atrás e itinerario
+# Roma 2026 · Cuenta atrás e itinerario visual
 
-Web estática responsive preparada para Vercel/GitHub Pages.
+Versión actualizada con las fotografías locales seleccionadas para el viaje.
 
-## Archivos
-- `index.html`: toda la interfaz y lógica.
-- `assets/colosseo.jpg`: imagen principal del Coliseo.
+## Estructura
+- `index.html`: página completa, responsive y sin dependencias de build.
+- `assets/places/`: fotografías optimizadas en WebP para carga rápida en móvil.
 
-Las fotografías de las tarjetas se cargan desde Wikimedia Commons mediante URLs públicas. Si una imagen externa no carga, la tarjeta mantiene un fondo de reserva.
+Las imágenes locales se usan para las visitas que disponían de fotografía en `Roma.zip`. Para algunos puntos sin foto propia (Trevi, Piazza di Spagna, Capilla Sixtina, Gesù, Palazzo Colonna, Foro/Palatino, Termini y Fiumicino) se mantienen referencias visuales externas o iconos de respaldo.
 
-## Despliegue en Vercel
-Sube el contenido de esta carpeta a la rama `main`. Si el repositorio ya está conectado a Vercel, el nuevo commit provoca un despliegue automático.
+Sube todo el contenido a la rama `main`; Vercel desplegará automáticamente.
