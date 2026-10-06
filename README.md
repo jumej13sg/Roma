@@ -1,11 +1,19 @@
-# Roma 2026 · Cuenta atrás e itinerario visual
+# Roma 2026 · Cuenta atrás + guía diaria
 
-Versión actualizada con las fotografías locales seleccionadas para el viaje.
+Web estática responsive para el viaje a Roma del 17 al 22 de octubre de 2026.
 
-## Estructura
-- `index.html`: página completa, responsive y sin dependencias de build.
-- `assets/places/`: fotografías optimizadas en WebP para carga rápida en móvil.
+## Incluye
+- Portada con cuenta atrás.
+- Navegación por días.
+- Resumen de cada jornada.
+- Mapa interactivo por día con puntos numerados y trazado orientativo.
+- Lista ordenada de paradas vinculada al mapa.
+- Botón para abrir la ruta en Google Maps.
+- Tarjetas con fotografía, hora y explicación breve de cada sitio.
+- Diseño optimizado para móvil.
 
-Las imágenes locales se usan para las visitas que disponían de fotografía en `Roma.zip`. Para algunos puntos sin foto propia (Trevi, Piazza di Spagna, Capilla Sixtina, Gesù, Palazzo Colonna, Foro/Palatino, Termini y Fiumicino) se mantienen referencias visuales externas o iconos de respaldo.
+## Mapas
+Los mapas usan Leaflet + OpenStreetMap. Necesitan conexión a Internet para cargar las teselas del mapa. La línea mostrada en la web une las paradas de forma orientativa y no pretende ser una ruta peatonal giro a giro.
 
-Sube todo el contenido a la rama `main`; Vercel desplegará automáticamente.
+## Despliegue
+Proyecto estático: subir todo el contenido a la raíz del repositorio conectado a Vercel. No necesita build, backend ni dependencias npm.
