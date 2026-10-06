@@ -17,3 +17,12 @@ Los mapas usan Leaflet + OpenStreetMap. Necesitan conexión a Internet para carg
 
 ## Despliegue
 Proyecto estático: subir todo el contenido a la raíz del repositorio conectado a Vercel. No necesita build, backend ni dependencias npm.
+
+
+## Actualización: mapas estáticos y contador con segundos
+- Se eliminó Leaflet/OpenStreetMap interactivo de la interfaz.
+- Cada jornada tiene ahora un mapa estático local con puntos numerados y clicables.
+- Los días del centro histórico usan recortes locales del mapa aportado por el usuario; llegada/salida usan un mapa regional estilizado.
+- El botón “Ver ruta en Google Maps” se mantiene para navegación real.
+- El contador muestra días, horas, minutos y segundos.
+- Se añadieron al resumen visual varias ubicaciones explícitas que estaban en el itinerario y no aparecían como paradas independientes.
