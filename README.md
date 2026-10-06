@@ -26,3 +26,11 @@ Proyecto estático: subir todo el contenido a la raíz del repositorio conectado
 - El botón “Ver ruta en Google Maps” se mantiene para navegación real.
 - El contador muestra días, horas, minutos y segundos.
 - Se añadieron al resumen visual varias ubicaciones explícitas que estaban en el itinerario y no aparecían como paradas independientes.
+
+Actualización mapas móviles
+- Eliminados los bloques visuales "Mapa premium", "Tarjeta de ruta" y "Mini leyenda".
+- Mapas estáticos regenerados en proporción 4:3 y optimizados para smartphone.
+- El recorrido se dibuja en el propio mapa y la web mantiene marcadores interactivos superpuestos.
+- Al pulsar una parada se resalta su marcador y se actualiza la parada seleccionada.
+- Se mantiene el botón de ruta en Google Maps.
+- Orden de paradas revisado respecto al itinerario: especialmente Vaticano/Prati y el regreso del jueves.
