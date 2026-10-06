@@ -34,3 +34,14 @@ Actualización mapas móviles
 - Al pulsar una parada se resalta su marcador y se actualiza la parada seleccionada.
 - Se mantiene el botón de ruta en Google Maps.
 - Orden de paradas revisado respecto al itinerario: especialmente Vaticano/Prati y el regreso del jueves.
+
+
+## Mejora móvil de mapas
+- El mapa mantiene su proporción original y ya no se deforma con `object-fit: fill`.
+- En smartphone, los mapas urbanos se muestran en un viewport casi cuadrado con recorte/zoom visual sin perder la alineación de los marcadores.
+- Vaticano/Prati recibe un zoom móvil específico por la concentración de paradas.
+- Los mapas de traslado (Fiumicino ↔ Roma) usan una proporción 5:4 para conservar aeropuerto y centro en la misma vista.
+- La información de la parada seleccionada aparece debajo del mapa.
+- Los marcadores son más pequeños en móvil y conservan resaltado interactivo.
+- Botón para ampliar el mapa en un diálogo y botón directo a Google Maps.
+- Las tarjetas de lugares también permiten seleccionar/resaltar la parada correspondiente.

@@ -83,6 +83,79 @@
     @media(max-width:960px){.map-card{min-height:0!important}.static-map{height:auto!important;aspect-ratio:4/3}}
     @media(max-width:620px){.route-layout{padding:8px;gap:9px}.map-card{border-radius:17px}.static-map{height:auto!important;aspect-ratio:4/3;border-radius:17px}.static-marker{width:29px;height:29px;font-size:10px}.map-info-bar{left:7px;right:7px;bottom:7px;min-height:44px;padding:7px 9px}.map-info-copy strong{font-size:.78rem}.map-info-copy span{font-size:.65rem}.steps-card{padding:15px}.route-step{padding:9px 7px}.route-tip{font-size:.69rem}}
 
+
+
+    /* =========================================================
+       MAPAS SMARTPHONE V2 · proporción real + selección externa
+       ========================================================= */
+    .map-column{min-width:0;display:grid;gap:10px}
+    .map-card{min-height:0!important;border-radius:22px;overflow:hidden;background:#17100e;border:1px solid rgba(255,255,255,.11);box-shadow:0 18px 42px rgba(0,0,0,.2)}
+    .static-map{position:relative;width:100%;height:auto!important;aspect-ratio:4/3;overflow:hidden;background:#17100e;isolation:isolate;border-radius:21px}
+    .map-stage{position:absolute;inset:0;overflow:visible;transform-origin:center center}
+    .map-stage .static-map-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover!important;display:block;filter:saturate(.96) contrast(1.08) brightness(1.06)}
+    .static-map::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(18,12,11,0),rgba(18,12,11,.055));pointer-events:none}
+    .static-map::after{display:none!important}
+    .map-head,.map-premium-panel,.map-legend,.focus-zone,.static-map-hint,.static-route-svg,.map-info-bar{display:none!important}
+
+    .static-marker{z-index:4;width:30px;height:30px;border:2px solid rgba(255,250,243,.94);font-size:10px;background:linear-gradient(135deg,#ffdda8,#efb36a);box-shadow:0 7px 18px rgba(0,0,0,.38),0 0 0 0 rgba(239,179,106,.25)}
+    .static-marker:hover,.static-marker:focus-visible{transform:translate(-50%,-50%) scale(1.09);box-shadow:0 9px 24px rgba(0,0,0,.43),0 0 0 5px rgba(239,179,106,.15)}
+    .static-marker.is-active{transform:translate(-50%,-50%) scale(1.13);background:linear-gradient(135deg,#fff7e8,#ffc879);box-shadow:0 10px 26px rgba(0,0,0,.48),0 0 0 7px rgba(239,179,106,.28)}
+
+    .selected-stop-card{display:grid;grid-template-columns:42px minmax(0,1fr);gap:11px;align-items:center;padding:12px 13px;border-radius:17px;background:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.11);box-shadow:0 10px 28px rgba(0,0,0,.16)}
+    .selected-stop-num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffdca8,var(--accent));color:#1b100d;font-size:.8rem;font-weight:900;box-shadow:0 7px 18px rgba(239,179,106,.16)}
+    .selected-stop-copy{min-width:0}.selected-stop-copy strong{display:block;font-size:.92rem;line-height:1.2}.selected-stop-copy span{display:block;margin-top:4px;color:var(--muted);font-size:.74rem;line-height:1.35}
+    .map-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .map-toolbar .route-btn{width:100%;min-height:42px;padding:10px 12px;background:rgba(255,255,255,.07)}
+    button.route-btn{font:inherit;cursor:pointer}
+
+    .route-layout{align-items:start}
+    .route-step.is-active{background:rgba(239,179,106,.12);box-shadow:inset 0 0 0 1px rgba(239,179,106,.22)}
+    .place[data-place-stop]{cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+    .place[data-place-stop]:focus-visible{outline:2px solid rgba(239,179,106,.7);outline-offset:3px}
+    .place.is-active-place{border-color:rgba(239,179,106,.38);box-shadow:0 18px 46px rgba(0,0,0,.3),0 0 0 1px rgba(239,179,106,.13) inset}
+
+    /* Modal de mapa ampliado */
+    .map-dialog{width:min(960px,calc(100vw - 24px));max-width:none;padding:0;border:1px solid rgba(255,255,255,.14);border-radius:26px;color:var(--text);background:linear-gradient(180deg,#211512,#120c0b);box-shadow:0 30px 100px rgba(0,0,0,.62);overflow:hidden}
+    .map-dialog::backdrop{background:rgba(5,3,3,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .map-dialog-inner{padding:14px}
+    .map-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 4px 13px}
+    .map-dialog-title{min-width:0}.map-dialog-title span{display:block;color:var(--accent);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em}.map-dialog-title strong{display:block;margin-top:3px;font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .map-dialog-close{flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:var(--text);font-size:1.2rem;cursor:pointer}
+    .map-dialog-map{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:20px;background:#17100e;border:1px solid rgba(255,255,255,.1)}
+    .map-dialog-map .map-stage{inset:0!important;width:100%!important;height:100%!important;transform:none!important}
+    .map-dialog-map .static-map-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.98) contrast(1.08) brightness(1.07)}
+    .map-dialog-selection{margin-top:10px}
+
+    @media(max-width:960px){
+      .route-layout{grid-template-columns:1fr;gap:11px;padding:10px}
+      .steps-card{order:2}
+    }
+    @media(max-width:620px){
+      .page{padding-left:10px;padding-right:10px}
+      .day-panel{border-radius:22px}
+      .day-summary{padding:20px 16px;grid-template-columns:1fr;gap:12px}
+      .day-tag{justify-self:start}
+      .route-layout{padding:8px;gap:9px}
+      .map-column{gap:8px}
+      .map-card{border-radius:18px}
+      .static-map{aspect-ratio:1/1;border-radius:17px}
+      .static-map.transfer-map{aspect-ratio:5/4}
+      .static-map .map-stage{inset:auto;left:50%;top:50%;width:calc(133.333% * var(--mobile-zoom,1));height:auto;aspect-ratio:4/3;transform:translate(calc(-50% + var(--mobile-shift-x,0%)),calc(-50% + var(--mobile-shift-y,0%)));}
+      .static-map.transfer-map .map-stage{width:calc(106.667% * var(--mobile-zoom,1))}
+      .static-marker{width:27px;height:27px;font-size:9px;border-width:1.7px}
+      .selected-stop-card{grid-template-columns:38px minmax(0,1fr);padding:10px 11px;border-radius:15px}
+      .selected-stop-num{width:34px;height:34px;font-size:.74rem}.selected-stop-copy strong{font-size:.84rem}.selected-stop-copy span{font-size:.69rem}
+      .map-toolbar{grid-template-columns:1fr 1fr}.map-toolbar .route-btn{font-size:.72rem;padding:9px 8px;min-height:40px}
+      .steps-card{padding:14px;border-radius:18px}.route-steps{gap:3px}.route-step{grid-template-columns:32px 1fr;padding:9px 7px}.step-num{width:29px;height:29px}.step-name{font-size:.83rem}.step-time{font-size:.7rem}
+      .places{grid-template-columns:1fr;gap:10px;padding:10px}.place{min-height:270px}
+      .map-dialog{width:calc(100vw - 12px);max-height:calc(100svh - 12px);border-radius:22px}
+      .map-dialog-inner{padding:9px}.map-dialog-head{padding:4px 3px 9px}.map-dialog-map{aspect-ratio:1/1;border-radius:17px}
+      .map-dialog-map.transfer-dialog{aspect-ratio:5/4}
+      .map-dialog-map .map-stage{left:50%!important;top:50%!important;width:calc(133.333% * var(--mobile-zoom,1))!important;height:auto!important;aspect-ratio:4/3;transform:translate(calc(-50% + var(--mobile-shift-x,0%)),calc(-50% + var(--mobile-shift-y,0%)))!important}
+      .map-dialog-map.transfer-dialog .map-stage{width:calc(106.667% * var(--mobile-zoom,1))!important}
+      .map-dialog-map .static-marker{width:31px;height:31px;font-size:10px}
+    }
+
 </style>
 </head>
 <body>
@@ -106,6 +179,15 @@
   </section>
   <div class="footer"><span>Cuenta atrás hasta el 17 de octubre de 2026 · 00:00</span><span class="italy">ROMA <span class="heart">♥</span></span></div>
 </div></main>
+
+<dialog id="mapDialog" class="map-dialog" aria-label="Mapa ampliado">
+  <div class="map-dialog-inner">
+    <div class="map-dialog-head"><div class="map-dialog-title"><span>Mapa ampliado</span><strong data-dialog-title>Roma</strong></div><button class="map-dialog-close" type="button" aria-label="Cerrar mapa">×</button></div>
+    <div class="map-dialog-map" data-dialog-map></div>
+    <div class="map-dialog-selection" data-dialog-selected></div>
+  </div>
+</dialog>
+
 <script>
 const target=new Date('2026-10-17T00:00:00+02:00').getTime();
 const daysEl=document.getElementById('days'),hoursEl=document.getElementById('hours'),minutesEl=document.getElementById('minutes'),secondsEl=document.getElementById('seconds'),countdownEl=document.getElementById('countdown'),arrivedEl=document.getElementById('arrived');
@@ -178,6 +260,23 @@ const itinerary={
  ]}
 };
 
+
+const mapDialog=document.getElementById('mapDialog');
+function openMapDialog(id){
+  const d=itinerary[id],index=activeStops[id]??0;if(!d)return;
+  mapDialog.dataset.day=id;
+  mapDialog.querySelector('[data-dialog-title]').textContent=`${d.date} · ${d.title}`;
+  const host=mapDialog.querySelector('[data-dialog-map]');
+  host.classList.toggle('transfer-dialog',d.mapMode==='transfer');
+  const coords=d.places.map(p=>pointOnMap(p,d.mapBounds));
+  host.innerHTML=`<div class="map-stage" style="${stageStyle(id)}"><img class="static-map-image" src="${d.mapImage}" alt="Mapa ampliado de ${d.date}">${coords.map((c,i)=>`<button class="static-marker${i===index?' is-active':''}" type="button" data-dialog-stop="${i}" style="left:${c.x}%;top:${c.y}%" aria-label="${i+1}. ${d.places[i].name}">${i+1}</button>`).join('')}</div>`;
+  host.querySelectorAll('[data-dialog-stop]').forEach((m,i)=>m.addEventListener('click',()=>activateStop(id,i)));
+  mapDialog.querySelector('[data-dialog-selected]').innerHTML=selectedStopMarkup(d,index);
+  if(typeof mapDialog.showModal==='function')mapDialog.showModal();else mapDialog.setAttribute('open','');
+}
+mapDialog.querySelector('.map-dialog-close').addEventListener('click',()=>mapDialog.close());
+mapDialog.addEventListener('click',e=>{if(e.target===mapDialog)mapDialog.close()});
+
 const panels=document.getElementById('panels');
 function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
 function pointOnMap(p,b){
@@ -191,13 +290,25 @@ function directionsUrl(d){
 function card(p,i){
   const media=p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.closest('.place').classList.add('fallback');this.remove()">`:`<span class="place-icon" aria-hidden="true">📍</span>`;
   const opt=p.optional?'<span class="place-optional">Opcional</span>':'';
-  return `<article class="place${p.img?'':' fallback'}"><span class="place-index">${i+1}</span>${opt}${media}<div class="place-body"><span class="time">${p.time}</span><h3>${p.name}</h3><p>${p.desc}</p></div></article>`
+  return `<article class="place${p.img?'':' fallback'}" data-place-stop="${i}" tabindex="0" role="button" aria-label="Seleccionar ${i+1}. ${p.name}"><span class="place-index">${i+1}</span>${opt}${media}<div class="place-body"><span class="time">${p.time}</span><h3>${p.name}</h3><p>${p.desc}</p></div></article>`
 }
+const mobileMapView={
+  sab17:{zoom:1,shiftX:0,shiftY:0},
+  dom18:{zoom:1,shiftX:0,shiftY:0},
+  lun19:{zoom:1.25,shiftX:22,shiftY:0},
+  mar20:{zoom:1,shiftX:0,shiftY:0},
+  mie21:{zoom:1,shiftX:0,shiftY:0},
+  jue22:{zoom:1,shiftX:0,shiftY:0}
+};
+const activeStops={};
+function stageStyle(id){const v=mobileMapView[id]||{};return `--mobile-zoom:${v.zoom||1};--mobile-shift-x:${v.shiftX||0}%;--mobile-shift-y:${v.shiftY||0}%`}
+function selectedStopMarkup(d,index=0){const p=d.places[index];return `<div class="selected-stop-card"><span class="selected-stop-num">${index+1}</span><div class="selected-stop-copy"><strong>${p.name}${p.optional?' · opcional':''}</strong><span>${p.time} · ${p.desc}</span></div></div>`}
+
 function staticMapBlock(id,d){
   const coords=d.places.map(p=>pointOnMap(p,d.mapBounds));
   const markers=coords.map((c,i)=>{const p=d.places[i];return `<button class="static-marker${p.optional?' optional-marker':''}" type="button" data-map-stop="${i}" style="left:${c.x}%;top:${c.y}%" aria-label="${i+1}. ${p.name}" title="${p.name}">${i+1}</button>`}).join('');
-  const steps=d.places.map((p,i)=>`<li class="route-step" data-stop="${i}"><span class="step-num">${i+1}</span><span><span class="step-name">${p.name}${p.optional?'<span class="optional-tag">opcional</span>':''}</span><span class="step-time">${p.time}</span></span></li>`).join('');
-  return `<div class="route-layout"><div class="map-card"><div class="static-map" id="map-${id}" aria-label="Mapa estático de la ruta ${d.date}"><img class="static-map-image" src="${d.mapImage}" alt="Mapa de la ruta del ${d.date}" loading="lazy">${markers}<div class="map-info-bar" aria-live="polite"><span class="map-info-num">1</span><div class="map-info-copy"><strong>${d.places[0].name}</strong><span>${d.places[0].time}</span></div></div></div></div><aside class="steps-card"><h4 class="steps-title">Orden de la ruta</h4><ol class="route-steps">${steps}</ol><div class="route-actions"><a class="route-btn" href="${directionsUrl(d)}" target="_blank" rel="noopener">↗ Ver ruta en Google Maps</a></div><p class="route-tip">Pulsa una parada para localizarla en el mapa. El botón abre el recorrido en Google Maps para navegar.</p></aside></div>`
+  const steps=d.places.map((p,i)=>`<li class="route-step" data-stop="${i}" tabindex="0" role="button" aria-label="Seleccionar ${i+1}. ${p.name}"><span class="step-num">${i+1}</span><span><span class="step-name">${p.name}${p.optional?'<span class="optional-tag">opcional</span>':''}</span><span class="step-time">${p.time}</span></span></li>`).join('');
+  return `<div class="route-layout"><div class="map-column"><div class="map-card"><div class="static-map ${d.mapMode==='transfer'?'transfer-map':'city-map'}" id="map-${id}" aria-label="Mapa estático de la ruta ${d.date}"><div class="map-stage" style="${stageStyle(id)}"><img class="static-map-image" src="${d.mapImage}" alt="Mapa de la ruta del ${d.date}" loading="lazy">${markers}</div></div></div><div class="selected-stop-wrap" data-selected-stop>${selectedStopMarkup(d,0)}</div><div class="map-toolbar"><button class="route-btn" type="button" data-expand-map="${id}">⛶ Ampliar mapa</button><a class="route-btn" href="${directionsUrl(d)}" target="_blank" rel="noopener">↗ Ver en Google Maps</a></div></div><aside class="steps-card"><h4 class="steps-title">Orden de la ruta</h4><ol class="route-steps">${steps}</ol><p class="route-tip">Pulsa un número, una parada o una tarjeta para resaltarla en el mapa. La ruta navegable se abre en Google Maps.</p></aside></div>`
 }
 Object.entries(itinerary).forEach(([id,d],idx)=>{
   const section=document.createElement('section');section.className='day-panel';section.id=`panel-${id}`;section.setAttribute('role','tabpanel');section.setAttribute('aria-labelledby',`tab-${id}`);if(idx)section.hidden=true;
@@ -206,15 +317,26 @@ Object.entries(itinerary).forEach(([id,d],idx)=>{
 });
 function activateStop(id,index){
   const panel=document.getElementById(`panel-${id}`),d=itinerary[id];if(!panel||!d||!d.places[index])return;
+  activeStops[id]=index;
   panel.querySelectorAll('.static-marker').forEach((el,i)=>el.classList.toggle('is-active',i===index));
   panel.querySelectorAll('.route-step').forEach((el,i)=>el.classList.toggle('is-active',i===index));
-  const info=panel.querySelector('.map-info-bar'),p=d.places[index];
-  if(info)info.innerHTML=`<span class="map-info-num">${index+1}</span><div class="map-info-copy"><strong>${p.name}${p.optional?' · opcional':''}</strong><span>${p.time}</span></div>`;
+  panel.querySelectorAll('[data-place-stop]').forEach((el,i)=>el.classList.toggle('is-active-place',Number(el.dataset.placeStop)===index));
+  const selected=panel.querySelector('[data-selected-stop]');if(selected)selected.innerHTML=selectedStopMarkup(d,index);
+  if(mapDialog.open&&mapDialog.dataset.day===id){
+    mapDialog.querySelectorAll('.static-marker').forEach((el,i)=>el.classList.toggle('is-active',i===index));
+    const sel=mapDialog.querySelector('[data-dialog-selected]');if(sel)sel.innerHTML=selectedStopMarkup(d,index);
+  }
+}
+function bindSelectable(el,id,index){
+  el.addEventListener('click',()=>activateStop(id,index));
+  el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activateStop(id,index)}})
 }
 Object.keys(itinerary).forEach(id=>{
   const panel=document.getElementById(`panel-${id}`);if(!panel)return;
-  panel.querySelectorAll('.static-marker').forEach((m,i)=>m.addEventListener('click',()=>activateStop(id,i)));
-  panel.querySelectorAll('.route-step').forEach((s,i)=>s.addEventListener('click',()=>activateStop(id,i)));
+  panel.querySelectorAll('.static-marker').forEach((m,i)=>bindSelectable(m,id,i));
+  panel.querySelectorAll('.route-step').forEach((s,i)=>bindSelectable(s,id,i));
+  panel.querySelectorAll('[data-place-stop]').forEach((c,i)=>bindSelectable(c,id,Number(c.dataset.placeStop)));
+  panel.querySelector('[data-expand-map]')?.addEventListener('click',()=>openMapDialog(id));
   activateStop(id,0)
 });
 const tabs=[...document.querySelectorAll('.day-tab')];
