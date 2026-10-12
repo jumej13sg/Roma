@@ -156,6 +156,38 @@
       .map-dialog-map .static-marker{width:31px;height:31px;font-size:10px}
     }
 
+
+    /* =========================================================
+       ITINERARIO V3 · rutas del Word + carrusel martes
+       ========================================================= */
+    .route-carousel{position:relative;padding:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .route-carousel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 10px}
+    .route-carousel-title{min-width:0}.route-carousel-title small{display:block;color:var(--accent);font-size:.68rem;text-transform:uppercase;letter-spacing:.13em}.route-carousel-title strong{display:block;margin-top:3px;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .route-count{flex:0 0 auto;padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--muted);font-size:.7rem}
+    .route-viewport{position:relative;overflow:hidden;border-radius:22px}
+    .route-track{display:flex;align-items:flex-start;transition:transform .42s cubic-bezier(.2,.75,.2,1);will-change:transform}
+    .route-slide{flex:0 0 100%;min-width:0;padding:0 1px}
+    .route-slide .route-layout{border-bottom:0;padding:0;grid-template-columns:minmax(0,1.45fr) minmax(250px,.55fr)}
+    .route-arrow{position:absolute;z-index:25;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(18,12,11,.82);color:#ffe6cb;display:grid;place-items:center;font-size:1.15rem;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+    .route-arrow:hover{background:rgba(239,179,106,.2);border-color:rgba(239,179,106,.45)}.route-arrow.prev{left:9px}.route-arrow.next{right:9px}.route-arrow[hidden]{display:none}
+    .route-pager{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:9px}.route-dot{width:7px;height:7px;border:0;border-radius:999px;background:rgba(255,255,255,.2);padding:0;cursor:pointer;transition:.22s}.route-dot.is-active{width:24px;background:var(--accent)}
+    .route-badge{display:inline-flex;align-items:center;gap:6px;margin-bottom:8px;padding:6px 9px;border-radius:999px;background:rgba(239,179,106,.1);border:1px solid rgba(239,179,106,.16);color:#ffdcb7;font-size:.69rem;font-weight:750}
+    .map-card.route-screenshot{background:#100b0a}.map-card.route-screenshot .static-map{aspect-ratio:4/3;background:#100b0a}.map-card.route-screenshot .map-stage{inset:0!important;width:100%!important;height:100%!important;transform:none!important}.map-card.route-screenshot .static-map-image{object-fit:cover!important;filter:none!important}
+    .route-status{display:inline-flex;margin-left:7px;padding:2px 6px;border-radius:999px;background:rgba(215,106,76,.16);border:1px solid rgba(215,106,76,.22);color:#ffc0ad;font-size:.61rem;font-weight:800;vertical-align:1px}
+    .route-step.route-muted{opacity:.78}.route-step.route-muted .step-num{background:linear-gradient(135deg,#f1b29d,#d76a4c)}
+    .route-source-note{margin:10px 2px 0;color:var(--muted2);font-size:.69rem;line-height:1.4}
+    .day-alert{margin-top:12px;padding:11px 12px;border-radius:14px;background:rgba(239,179,106,.07);border:1px solid rgba(239,179,106,.13);color:var(--muted);font-size:.76rem;line-height:1.5}.day-alert strong{color:#ffe0b7}
+    .place-note{position:absolute;right:10px;top:10px;z-index:4;padding:5px 8px;border-radius:999px;background:rgba(20,12,10,.72);border:1px solid rgba(255,255,255,.13);color:#ffe1bd;font-size:.65rem;backdrop-filter:blur(8px)}
+    .map-dialog-route{margin-top:5px;color:var(--muted);font-size:.72rem}
+    @media(max-width:960px){.route-slide .route-layout{grid-template-columns:1fr}.route-arrow{top:35%}}
+    @media(max-width:620px){
+      .route-carousel{padding:8px}.route-carousel-head{margin-bottom:8px}.route-viewport{border-radius:17px}
+      .route-slide .route-layout{gap:8px}.map-card.route-screenshot .static-map{aspect-ratio:1/1}.map-card.route-screenshot .static-map-image{object-fit:contain!important;background:#100b0a}
+      .route-arrow{width:34px;height:34px;top:31%;font-size:1rem}.route-arrow.prev{left:6px}.route-arrow.next{right:6px}
+      .route-carousel-title strong{font-size:.87rem}.route-count{font-size:.65rem}.route-pager{margin-top:7px}
+      .route-slide .steps-card{max-height:none}.route-source-note{font-size:.66rem}
+    }
+
 </style>
 </head>
 <body>
@@ -201,151 +233,183 @@ function updateCountdown(){
 updateCountdown();setInterval(updateCountdown,1000);
 
 const IMG={
- maria:'assets/places/santa-maria-maggiore.webp',piazzavittorio:'assets/places/piazza-vittorio-emanuele-ii.webp',
- spagna:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Piazza_di_Spagna_%28Rome%29_0004.jpg/660px-Piazza_di_Spagna_%28Rome%29_0004.jpg',trevi:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Trevi_Fountain_-_Roma.jpg/660px-Trevi_Fountain_-_Roma.jpg',pantheon:'assets/places/panteon.webp',navona:'assets/places/piazza-navona.webp',vaticanos:'assets/places/museos-vaticanos.webp',sistina:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Sistina-interno.jpg/660px-Sistina-interno.jpg',sanpietro:'assets/places/san-pedro.webp',castel:'assets/places/castel-sant-angelo.webp',prati:'assets/places/prati.webp',campo:'assets/places/campo-de-fiori.webp',gesu:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Jesus_Church.jpg/660px-Jesus_Church.jpg',colonna:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Trevi_-_palazzo_colonna_e_basilica_santi_apostoli_01.JPG/660px-Trevi_-_palazzo_colonna_e_basilica_santi_apostoli_01.JPG',corso:'assets/places/via-del-corso.webp',gianicolo:'assets/places/gianicolo.webp',trastevere:'assets/places/trastevere.webp',monti:'assets/places/monti.webp',montinotte:'assets/places/monti-noche.webp',vincoli:'assets/places/san-pietro-in-vincoli.webp',colosseo:'assets/places/coliseo.webp',foro:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Foro_Romano_Musei_Capitolini_Roma.jpg/660px-Foro_Romano_Musei_Capitolini_Roma.jpg',palatino:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg/660px-Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg',vittoriano:'assets/places/vittoriano.webp',campidoglio:'assets/places/campidoglio.webp',capitolini:'assets/places/museos-capitolinos.webp',termini:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Roma_termini_01.jpg/660px-Roma_termini_01.jpg',leonardo:'assets/places/leonardo-express.webp',vianazionale:'assets/places/via-nazionale.webp',fiumicino:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Rome%2C_Italy_ESA24383157_%28cropped%29.jpeg/660px-Rome%2C_Italy_ESA24383157_%28cropped%29.jpeg'
+  maria:'assets/places/santa-maria-maggiore.webp',piazzavittorio:'assets/places/piazza-vittorio-emanuele-ii.webp',
+  spagna:'https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Piazza_di_Spagna_%28Rome%29_0004.jpg/660px-Piazza_di_Spagna_%28Rome%29_0004.jpg',trevi:'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Trevi_Fountain_-_Roma.jpg/660px-Trevi_Fountain_-_Roma.jpg',pantheon:'assets/places/panteon.webp',navona:'assets/places/piazza-navona.webp',
+  pace:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ponte-_Chiesa_di_S.Maria_della_Pace.jpg/1280px-Ponte-_Chiesa_di_S.Maria_della_Pace.jpg',
+  minerva:'https://upload.wikimedia.org/wikipedia/commons/5/59/Fassade_von_Santa_Maria_sopra_Minerva%2C_Obelisk_und_Berninis_Elefant.jpg',
+  ignazio:'https://cdn.myportfolio.com/645ef5b2f82fdeaf819364ecd9d55d6c/8c8c0fbe-8c7c-43dd-8707-3e47fbbf2706_rw_1920.jpg?h=336935bdc7e4ded7d41f89ddf85246e8',
+  sciarra:'https://mediaim.expedia.com/destination/2/640585def5b64218e6cf9b9424fb8e50.jpg',
+  andrea:'https://i0.wp.com/corvinus.nl/wp-content/uploads/2024/08/SantAndrea-delle-Fratte1.jpg?ssl=1',
+  vaticanos:'assets/places/museos-vaticanos.webp',sistina:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Sistina-interno.jpg/660px-Sistina-interno.jpg',sanpietro:'assets/places/san-pedro.webp',castel:'assets/places/castel-sant-angelo.webp',prati:'assets/places/prati.webp',
+  gioacchino:'https://commons.wikimedia.org/wiki/Special:Redirect/file/Prati%20-%20S.%20Gioacchino%20ai%20Prati.JPG',
+  borghese:'https://cdn.prod.website-files.com/6436c06401241a4b004421af/68232eafc81446192242dd14_Borghese%20Gallery%20tickets%20cost.jpg',
+  vittoria:'https://commons.wikimedia.org/wiki/Special:Redirect/file/01%20Santa%20Maria%20della%20Vittoria%20Facade.jpg',
+  campo:'assets/places/campo-de-fiori.webp',gesu:'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Jesus_Church.jpg/660px-Jesus_Church.jpg',colonna:'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Trevi_-_palazzo_colonna_e_basilica_santi_apostoli_01.JPG/660px-Trevi_-_palazzo_colonna_e_basilica_santi_apostoli_01.JPG',corso:'assets/places/via-del-corso.webp',gianicolo:'assets/places/gianicolo.webp',trastevere:'assets/places/trastevere.webp',
+  monti:'assets/places/monti.webp',montinotte:'assets/places/monti-noche.webp',vincoli:'assets/places/san-pietro-in-vincoli.webp',colosseo:'assets/places/coliseo.webp',foro:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Foro_Romano_Musei_Capitolini_Roma.jpg/660px-Foro_Romano_Musei_Capitolini_Roma.jpg',palatino:'https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg/660px-Palatine_Hill_from_across_the_Circus_Maximus_April_2019.jpg',vittoriano:'assets/places/vittoriano.webp',campidoglio:'assets/places/campidoglio.webp',capitolini:'assets/places/museos-capitolinos.webp',
+  laterano:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Roma_San_Giovanni_in_Laterano_BW_2.JPG/960px-Roma_San_Giovanni_in_Laterano_BW_2.JPG',
+  termini:'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Roma_termini_01.jpg/660px-Roma_termini_01.jpg',leonardo:'assets/places/leonardo-express.webp',vianazionale:'assets/places/via-nazionale.webp',fiumicino:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Rome%2C_Italy_ESA24383157_%28cropped%29.jpeg/660px-Rome%2C_Italy_ESA24383157_%28cropped%29.jpeg'
 };
 
 const REGIONAL_BOUNDS={north:41.94,south:41.77,west:12.18,east:12.54};
 const itinerary={
- sab17:{date:'Sábado 17',title:'Llegada y primera toma de contacto',route:'Fiumicino → Termini → Santa Maria Maggiore → Piazza Vittorio',tag:'Llegada · paseo suave',summary:'Día muy ligero: aterrizar, instalarse junto a Termini y estrenar Roma con un paseo nocturno por Esquilino.',mapMode:'transfer',mapImage:'assets/maps/sab17.webp',mapBounds:REGIONAL_BOUNDS,travelMode:'transit',places:[
-  {name:'Fiumicino',time:'19:00',desc:'Llegada al aeropuerto Leonardo da Vinci–Fiumicino.',img:IMG.fiumicino,lat:41.8003,lng:12.2389},
-  {name:'Roma Termini',time:'19:45+',desc:'Leonardo Express directo, llegada a Termini y check-in en el hotel.',img:IMG.termini,lat:41.9010,lng:12.5018},
-  {name:'Santa Maria Maggiore',time:'Noche',desc:'Primera toma de contacto con Roma: paseo por el exterior de la basílica.',img:IMG.maria,lat:41.8976,lng:12.4985,mapDx:-2.1,mapDy:2.2},
-  {name:'Piazza Vittorio Emanuele II',time:'Noche',desc:'Paseo tranquilo por Esquilino antes de cerrar el primer día.',img:IMG.piazzavittorio,lat:41.8954,lng:12.5049,mapDx:2.2,mapDy:3.5}
- ]},
- dom18:{date:'Domingo 18',title:'Centro histórico + free tour',route:'Santa Maria Maggiore → Piazza di Spagna → Trevi → Navona → Panteón → Monti',tag:'Clásicos de Roma',summary:'El día de las grandes postales: centro histórico por la mañana, Panteón por la tarde y Monti para terminar.',mapMode:'city',mapImage:'assets/maps/dom18.webp',mapBounds:{north:41.907878,south:41.893622,west:12.468020,east:12.503580},travelMode:'walking',places:[
-  {name:'Santa Maria Maggiore',time:'08:45',desc:'Visita al interior de la basílica antes de bajar al centro histórico.',img:IMG.maria,lat:41.8976,lng:12.4985},
-  {name:'Piazza di Spagna',time:'10:00',desc:'Punto de encuentro del free tour y primera gran postal del centro.',img:IMG.spagna,lat:41.9057,lng:12.4823},
-  {name:'Fontana di Trevi',time:'Free tour',desc:'Una de las paradas estrella del recorrido por el corazón de Roma.',img:IMG.trevi,lat:41.9009,lng:12.4833},
-  {name:'Piazza Navona',time:'12:00',desc:'Fin del free tour y tiempo para disfrutar la plaza con calma.',img:IMG.navona,lat:41.8992,lng:12.4731},
-  {name:'Panteón',time:'16:00',desc:'Visita al interior del Panteón, uno de los imprescindibles del viaje.',img:IMG.pantheon,lat:41.8986,lng:12.4768},
-  {name:'Monti',time:'20:00+',desc:'Cena y cervezas por Monti: Il Fusto, Sacripante Art Gallery o Drink Kong.',img:IMG.montinotte,lat:41.8958,lng:12.4927}
- ]},
- lun19:{date:'Lunes 19',title:'Vaticano + Prati',route:'Museos Vaticanos → Capilla Sixtina → San Pedro → Tonnarello → Castel Sant’Angelo → Piazza Cavour → Via Cola di Rienzo',tag:'Arte · Vaticano',summary:'Mañana de arte y Vaticano; después, San Pedro, comida junto a Borgo, Castel Sant’Angelo y paseo por Prati. Por la noche, el centro histórico queda como plan opcional.',mapMode:'city',mapImage:'assets/maps/lun19.webp',mapBounds:{north:41.910782,south:41.899118,west:12.448404,east:12.488496},travelMode:'walking',places:[
-  {name:'Museos Vaticanos',time:'09:00',desc:'Mañana dedicada a las colecciones vaticanas y su recorrido monumental.',img:IMG.vaticanos,lat:41.9065,lng:12.4536,mapDx:-1.1,mapDy:-.2},
-  {name:'Capilla Sixtina',time:'Mañana',desc:'El gran cierre artístico dentro del recorrido de los Museos Vaticanos.',img:IMG.sistina,lat:41.9029,lng:12.4545,mapDx:-1.3,mapDy:1.3},
-  {name:'Plaza y Basílica de San Pedro',time:'12:20',desc:'Paseo por la plaza y exterior; interior si la cola acompaña.',img:IMG.sanpietro,lat:41.9022,lng:12.4539,mapDx:1.4,mapDy:2.3},
-  {name:'Tonnarello San Pietro',time:'13:30',desc:'Comida prevista en Via del Mascherino, 80.',img:IMG.sanpietro,lat:41.9046,lng:12.4585,mapDx:-1,mapDy:-1},
-  {name:'Castel Sant’Angelo',time:'15:10',desc:'Paseo hasta el castillo y visita exterior antes de continuar a Prati.',img:IMG.castel,lat:41.9031,lng:12.4663},
-  {name:'Piazza Cavour',time:'15:45',desc:'Entrada al Rione Prati y paseo por la plaza.',img:IMG.prati,lat:41.9090,lng:12.4662},
-  {name:'Via Cola di Rienzo',time:'Tarde',desc:'Paseo por una de las calles comerciales principales de Prati.',img:IMG.prati,lat:41.9077,lng:12.4650}
- ]},
- mar20:{date:'Martes 20',title:'Centro histórico + Gianicolo + Trastevere',route:'Campo de’ Fiori → Gesù → Palazzo Colonna → Via del Corso → Gianicolo → Trastevere → Piazza Trilussa',tag:'Mercado · atardecer · noche',summary:'Mañana de plazas y centro, descanso, atardecer desde el Gianicolo y noche larga en Trastevere.',mapMode:'city',mapImage:'assets/maps/mar20.webp',mapBounds:{north:41.905706,south:41.887994,west:12.457240,east:12.489860},travelMode:'walking',places:[
-  {name:'Campo de’ Fiori',time:'09:00',desc:'Mercado matinal y ambiente de plaza para comenzar el día.',img:IMG.campo,lat:41.8957,lng:12.4722},
-  {name:'Iglesia del Gesù',time:'09:55',desc:'Parada breve en la iglesia antes de seguir hacia Palazzo Colonna.',img:IMG.gesu,lat:41.8955,lng:12.4790},
-  {name:'Palazzo Colonna',time:'10:35',desc:'Visita exterior; el interior requeriría una visita privada concertada.',img:IMG.colonna,lat:41.8996,lng:12.4852},
-  {name:'Via del Corso',time:'11:00',desc:'Paseo por el centro y tiempo libre para pequeñas compras.',img:IMG.corso,lat:41.9030,lng:12.4804},
-  {name:'Belvedere del Gianicolo',time:'18:00',desc:'Piazzale Giuseppe Garibaldi y mirador al final de la tarde.',img:IMG.gianicolo,lat:41.8919,lng:12.4619},
-  {name:'Trastevere',time:'19:30+',desc:'Bajada a pie, aperitivo, paseo, cena y ambiente nocturno.',img:IMG.trastevere,lat:41.8913,lng:12.4692},
-  {name:'Piazza Trilussa',time:'21:00',desc:'Parada prevista para el show y el ambiente de la plaza.',img:IMG.trastevere,lat:41.8907,lng:12.4691,mapDx:1.8,mapDy:2}
- ]},
- mie21:{date:'Miércoles 21',title:'Coliseo + Roma antigua',route:'San Pietro in Vincoli → Coliseo → Foro → Palatino → Via dei Fori Imperiali → Piazza Venezia → Campidoglio → Monti',tag:'Roma imperial',summary:'La jornada más arqueológica: Miguel Ángel, Coliseo, Foros y Palatino; después, Piazza Venezia, Campidoglio y cierre por Monti.',mapMode:'city',mapImage:'assets/maps/mie21.webp',mapBounds:{north:41.897500,south:41.888000,west:12.480140,east:12.495260},travelMode:'walking',places:[
-  {name:'San Pietro in Vincoli',time:'09:00',desc:'Parada para ver el Moisés de Miguel Ángel antes del bloque arqueológico.',img:IMG.vincoli,lat:41.8933,lng:12.4931},
-  {name:'Coliseo · Arena',time:'11:00',desc:'Visita con audioguía y acceso a la Arena.',img:IMG.colosseo,lat:41.8902,lng:12.4922},
-  {name:'Foro Romano',time:'Mediodía',desc:'Continuación por el corazón político y monumental de la Roma antigua.',img:IMG.foro,lat:41.8925,lng:12.4853},
-  {name:'Palatino',time:'Mediodía',desc:'El recorrido del conjunto incluye también la colina del Palatino.',img:IMG.palatino,lat:41.8897,lng:12.4875},
-  {name:'Via dei Fori Imperiali',time:'16:15',desc:'Paseo desde la zona arqueológica en dirección a Piazza Venezia.',img:IMG.foro,lat:41.8938,lng:12.4880},
-  {name:'Piazza Venezia',time:'16:45',desc:'Llegada a una de las plazas centrales y más monumentales de Roma.',img:IMG.vittoriano,lat:41.8958,lng:12.4823,mapDx:-1.2,mapDy:-.8},
-  {name:'Vittoriano',time:'16:45',desc:'Exterior y terrazas inferiores del Monumento a Vittorio Emanuele II.',img:IMG.vittoriano,lat:41.8946,lng:12.4831,mapDx:1.5,mapDy:.8},
-  {name:'Piazza del Campidoglio',time:'17:20',desc:'Plaza monumental diseñada por Miguel Ángel.',img:IMG.campidoglio,lat:41.8933,lng:12.4828,mapDx:-1.4,mapDy:1.2},
-  {name:'Museos Capitolinos',time:'17:35',desc:'Visita a los Museos Capitolinos hasta el anochecer.',img:IMG.capitolini,lat:41.8931,lng:12.4829,mapDx:1.4,mapDy:2.3},
-  {name:'Monti',time:'20:45+',desc:'Cena y alguna cerveza para cerrar el último día completo.',img:IMG.montinotte,lat:41.8950,lng:12.4920}
- ]},
- jue22:{date:'Jueves 22',title:'Regalos y aeropuerto',route:'Termini / Esquilino → Via Nazionale → Roma Termini → Leonardo Express → Fiumicino',tag:'Últimas compras · vuelta',summary:'Última mañana sin prisas para regalos, vuelta a Termini y Leonardo Express rumbo a Fiumicino.',mapMode:'transfer',mapImage:'assets/maps/jue22.webp',mapBounds:REGIONAL_BOUNDS,travelMode:'transit',places:[
-  {name:'Termini / Esquilino',time:'Mañana',desc:'Últimas compras alrededor del hotel y la estación.',img:IMG.termini,lat:41.9010,lng:12.5018,mapDx:-2.1,mapDy:-1.5},
-  {name:'Via Nazionale',time:'Mañana',desc:'Último paseo y compras por una de las zonas previstas antes de salir.',img:IMG.vianazionale,lat:41.8995,lng:12.4902,mapDx:-2.2,mapDy:2.5},
-  {name:'Roma Termini',time:'Salida',desc:'Regreso a la estación para tomar el tren directo al aeropuerto.',img:IMG.termini,lat:41.9010,lng:12.5018,mapDx:1.2,mapDy:-.8},
-  {name:'Leonardo Express',time:'Salida',desc:'Trayecto directo Termini → Fiumicino, previsto en 32 minutos.',img:IMG.leonardo,lat:41.9010,lng:12.5018,mapDx:2.8,mapDy:2.5},
-  {name:'Fiumicino',time:'Aeropuerto',desc:'Fin del viaje y vuelo de regreso desde Leonardo da Vinci–Fiumicino.',img:IMG.fiumicino,lat:41.8003,lng:12.2389}
- ]}
+  sab17:{date:'Sábado 17',title:'Llegada y primera toma de contacto',tag:'Llegada · paseo suave',summary:'Aterrizaje, Leonardo Express, check-in junto a Termini y primer paseo por Esquilino.',route:'Fiumicino → Roma Termini → Santa Maria Maggiore → Piazza Vittorio Emanuele II',places:[
+    {name:'Fiumicino',time:'19:00',desc:'Llegada al aeropuerto Leonardo da Vinci–Fiumicino.',img:IMG.fiumicino},
+    {name:'Roma Termini',time:'Traslado',desc:'Leonardo Express directo hasta Termini y check-in en el hotel.',img:IMG.termini},
+    {name:'Santa Maria Maggiore',time:'Noche',desc:'Paseo por el exterior de la basílica.',img:IMG.maria},
+    {name:'Piazza Vittorio Emanuele II',time:'Noche',desc:'Paseo tranquilo por Esquilino para terminar el primer día.',img:IMG.piazzavittorio}
+  ],routes:[{label:'Llegada a Roma',mapImage:'assets/maps/sab17.webp',mapMode:'transfer',mapBounds:REGIONAL_BOUNDS,travelMode:'transit',stops:[
+    {name:'Fiumicino',time:'19:00',lat:41.8003,lng:12.2389,placeIndex:0},{name:'Roma Termini',time:'Leonardo Express',lat:41.9010,lng:12.5018,placeIndex:1},{name:'Santa Maria Maggiore',time:'Paseo',lat:41.8976,lng:12.4985,placeIndex:2,mapDx:-2.1,mapDy:2.2},{name:'Piazza Vittorio Emanuele II',time:'Paseo',lat:41.8954,lng:12.5049,placeIndex:3,mapDx:2.2,mapDy:3.5}
+  ]}]},
+
+  dom18:{date:'Domingo 18',title:'Centro histórico + free tour',tag:'Centro histórico',summary:'Free tour por el centro y tarde dedicada a iglesias y monumentos entre Navona, Panteón y la zona de Trevi.',route:'Santa Maria Maggiore → Piazza di Spagna → free tour → Navona → iglesias del centro → Monti',places:[
+    {name:'Santa Maria Maggiore',time:'08:45–09:20',desc:'Visita a la basílica antes de bajar al centro.',img:IMG.maria,routeRef:[0,1]},
+    {name:'Piazza di Spagna',time:'09:20–10:00',desc:'Llegada a la plaza y punto de encuentro del free tour.',img:IMG.spagna,routeRef:[0,2]},
+    {name:'Fontana di Trevi',time:'Free tour',desc:'Parada incluida dentro del recorrido del free tour.',img:IMG.trevi},
+    {name:'Piazza Navona',time:'12:00–12:20',desc:'Fin del free tour y tiempo para verla con calma.',img:IMG.navona,routeRef:[0,3]},
+    {name:'Santa Maria della Pace',time:'14:30–15:45',desc:'Iglesia y entorno de Arco della Pace.',img:IMG.pace,routeRef:[0,4]},
+    {name:'Panteón',time:'16:00–17:00',desc:'Visita al interior del Panteón.',img:IMG.pantheon,routeRef:[0,5]},
+    {name:'Santa Maria Sopra Minerva',time:'17:05–17:30',desc:'Parada junto a Piazza della Minerva.',img:IMG.minerva,routeRef:[0,6]},
+    {name:'San Ignacio de Loyola',time:'Tarde',desc:'Techo de Andrea Pozzo y falsa cúpula.',img:IMG.ignazio,routeRef:[0,7]},
+    {name:'Galleria Sciarra',time:'Tarde',desc:'Paso por su patio decorado.',img:IMG.sciarra,routeRef:[0,8]},
+    {name:'Sant’Andrea delle Fratte',time:'Tarde',desc:'Interior y obras de Bernini.',img:IMG.andrea,routeRef:[0,9]},
+    {name:'Monti',time:'20:00+',desc:'Cena y cervezas: Il Fusto, Sacripante Art Gallery o Drink Kong.',img:IMG.montinotte}
+  ],routes:[{label:'Ruta completa del centro',mapImage:'assets/maps/routes/dom18.webp',mapMode:'screenshot',mapsUrl:"https://www.google.com/maps/dir/Via+Torino,+150,+00184+Roma+RM,+Italia/Santa+Maria+della+Neve,+P.za+di+Santa+Maria+Maggiore,+00100+Roma+RM,+Italia/Pl.+de+Espa%C3%B1a,+00187+Roma+RM,+Italia/Plaza+Navona,+Piazza+Navona,+00186+Roma+RM,+Italia/Iglesia+de+Santa+Mar%C3%ADa+della+Pace,+Arco+della+Pace,+5,+00186+Roma+RM,+Italia/Panteon+de+Roma,+Piazza+della+Rotonda,+00186+Roma+RM,+Italia/Santa+Maria+Sopra+Minerva,+Piazza+della+Minerva,+42,+00186+Roma+RM,+Italia/Iglesia+de+San+Ignacio+de+Loyola,+Piazza+S.+Ignazio,+00186+Roma+RM,+Italia/Galleria+Sciarra,+Via+Marco+Minghetti,+10,+00187+Roma+RM,+Italia/Bas%C3%ADlica+de+Sant'Andrea+delle+Fratte,+Via+di+Sant'Andrea+delle+Fratte,+1,+00187+Roma+RM,+Italia/@41.9023703,12.4842456,15.75z/data=!4m62!4m61!1m5!1m1!1s0x132f61a5bdf1499f:0x3c979b837ce73a8b!2m2!1d12.4968449!2d41.900019!1m5!1m1!1s0x132f61a4db7d30d7:0xf7b354fb8f8c357a!2m2!1d12.4984084!2d41.8975986!1m5!1m1!1s0x132f60551e4bc091:0xe99f322710644b16!2m2!1d12.4822062!2d41.9056798!1m5!1m1!1s0x132f6083c19d1c3d:0xa35724562e82334a!2m2!1d12.4730742!2d41.8991633!1m5!1m1!1s0x132f605ab1250557:0xc189bac7b74ea23d!2m2!1d12.4715296!2d41.8997906!1m5!1m1!1s0x132f604f678640a9:0xcad165fa2036ce2c!2m2!1d12.4768729!2d41.8986108!1m5!1m1!1s0x132f604e0c1fe953:0x4ec75fd47747b4d4!2m2!1d12.4778181!2d41.8978303!1m5!1m1!1s0x132f60526de4e0cd:0xc6e56f7f632dc7f!2m2!1d12.479708!2d41.8991634!1m5!1m1!1s0x132f6052e55e78ad:0xe3bfa980abca9df7!2m2!1d12.482068!2d41.8999102!1m5!1m1!1s0x132f6054af279da3:0x2f332b7973c8d022!2m2!1d12.4835472!2d41.9036365!3e2?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",stops:[
+    {name:'Hotel · Via Torino 150',time:'Salida',mapX:87.1,mapY:57.2},{name:'Santa Maria Maggiore',time:'08:45',mapX:94.9,mapY:63.8,placeIndex:0},{name:'Piazza di Spagna',time:'10:00',mapX:50,mapY:36.9,placeIndex:1},{name:'Piazza Navona',time:'12:00',mapX:23.6,mapY:55.2,placeIndex:3},{name:'Santa Maria della Pace',time:'Tarde',mapX:19.7,mapY:54.6,placeIndex:4},{name:'Panteón',time:'16:00',mapX:35.4,mapY:59.2,placeIndex:5},{name:'Santa Maria Sopra Minerva',time:'17:05',mapX:36.3,mapY:62.4,placeIndex:6},{name:'San Ignacio de Loyola',time:'Tarde',mapX:40.2,mapY:57.2,placeIndex:7},{name:'Galleria Sciarra',time:'Tarde',mapX:49,mapY:53.3,placeIndex:8},{name:'Sant’Andrea delle Fratte',time:'Final ruta',mapX:53.9,mapY:38.9,placeIndex:9}
+  ]}]},
+
+  lun19:{date:'Lunes 19',title:'Vaticano + Prati',tag:'Arte · Vaticano',summary:'Museos Vaticanos, San Pedro, Castel Sant’Angelo y tarde por Prati, incluyendo San Gioacchino y Via Cola di Rienzo.',route:'Museos Vaticanos → San Pedro → Castel Sant’Angelo → Piazza Cavour → San Gioacchino → Via Cola di Rienzo',places:[
+    {name:'Museos Vaticanos',time:'09:30–12:15',desc:'Recorrido por los Museos Vaticanos.',img:IMG.vaticanos,routeRef:[0,0]},
+    {name:'Capilla Sixtina',time:'Dentro de los Museos',desc:'Incluida dentro de la visita de los Museos Vaticanos.',img:IMG.sistina},
+    {name:'Plaza de San Pedro',time:'12:20–13:20',desc:'Plaza y exterior de la basílica.',img:IMG.sanpietro,routeRef:[0,1]},
+    {name:'Tonnarello San Pietro',time:'13:30–15:00',desc:'Comida prevista en Via del Mascherino, 80.',img:IMG.sanpietro},
+    {name:'Castel Sant’Angelo',time:'15:10–15:40',desc:'Paseo y visita exterior.',img:IMG.castel,routeRef:[0,2]},
+    {name:'Piazza Cavour',time:'15:45',desc:'Entrada al Rione Prati.',img:IMG.prati,routeRef:[0,3]},
+    {name:'San Gioacchino in Prati',time:'16:15–16:40',desc:'Iglesia en Via Pompeo Magno / Piazza dei Quiriti.',img:IMG.gioacchino,routeRef:[0,4]},
+    {name:'Via Cola di Rienzo',time:'16:40–17:30',desc:'Paseo por la principal zona comercial de Prati.',img:IMG.prati,routeRef:[0,5]}
+  ],routes:[{label:'Vaticano + Prati',mapImage:'assets/maps/routes/lun19.webp',mapMode:'screenshot',mapsUrl:"https://www.google.com/maps/dir/Museo+Vaticano,+00120+Citt%C3%A0+del+Vaticano,+Ciudad+del+Vaticano/St+Peter's+Square,+00120/Castillo+de+Sant'Angelo,+Lungotevere+Castello,+50,+00193+Roma+RM,+Italia/Piazza+Cavour,+00193+Roma+RM,+Italia/Iglesia+de+San+Joaqu%C3%ADn+in+Prati,+Via+Pompeo+Magno,+25,+00192+Roma+RM,+Italia/Via+Cola+di+Rienzo,+Roma+RM,+Italia/@41.9042303,12.4557251,15.75z/data=!3m1!5s0x132f605c87448521:0xbf5790e798df062f!4m38!4m37!1m5!1m1!1s0x132f6063839bc129:0xcfe0eca0526416b6!2m2!1d12.4536413!2d41.9064878!1m5!1m1!1s0x132f6067b0ad3535:0xb0be9b5b5aad7258!2m2!1d12.4567283!2d41.9022225!1m5!1m1!1s0x13258a8711e7a4d1:0x366c111ce77d4189!2m2!1d12.466276!2d41.9030632!1m5!1m1!1s0x132f60597218c58b:0x6076c6612f92f63!2m2!1d12.4699476!2d41.9050157!1m5!1m1!1s0x132f605f7ba0e521:0x11ec730e794df17d!2m2!1d12.4652652!2d41.9096682!1m5!1m1!1s0x132f605f22bdafa7:0x7d982b12c58cd74b!2m2!1d12.465208!2d41.9079743!3e2?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",stops:[
+    {name:'Museos Vaticanos',time:'09:30',mapX:28.5,mapY:43.6,placeIndex:0},{name:'Plaza de San Pedro',time:'12:20',mapX:39.3,mapY:67.6,placeIndex:2},{name:'Castel Sant’Angelo',time:'15:10',mapX:68.6,mapY:62.8,placeIndex:4},{name:'Piazza Cavour',time:'15:45',mapX:80.3,mapY:52.4,placeIndex:5},{name:'San Gioacchino in Prati',time:'16:15',mapX:65.6,mapY:25.2,placeIndex:6},{name:'Via Cola di Rienzo',time:'16:40',mapX:64.7,mapY:30.8,placeIndex:7}
+  ]}]},
+
+  mar20:{date:'Martes 20',title:'Centro + Gianicolo + Trastevere',tag:'2 rutas · día dividido',summary:'El Word actualizado combina visitas de mañana y centro histórico con una segunda ruta independiente al atardecer entre Gianicolo y Trastevere.',route:'Ruta 1: centro histórico · Ruta 2: Gianicolo → Piazza Trilussa',alert:'El documento conserva dos bloques horarios que se solapan en la mañana. La web mantiene todas las visitas indicadas y usa, para cada mapa, exactamente el orden de las dos rutas de Google Maps incluidas en el Word.',places:[
+    {name:'Galleria Borghese',time:'09:00–11:00',desc:'Bernini, Caravaggio, Canova y colección Borghese.',img:IMG.borghese},
+    {name:'Santa Maria della Vittoria',time:'11:30–11:55',desc:'Capilla Cornaro y Éxtasis de Santa Teresa de Bernini.',img:IMG.vittoria},
+    {name:'Palazzo Colonna',time:'Centro histórico',desc:'Exterior de Palazzo / Galleria Colonna.',img:IMG.colonna,routeRef:[0,1]},
+    {name:'Iglesia del Gesù',time:'Centro histórico',desc:'Parada en la iglesia del Gesù.',img:IMG.gesu,routeRef:[0,2]},
+    {name:'Campo de’ Fiori',time:'Centro histórico',desc:'Mercado matinal y ambiente de plaza.',img:IMG.campo,routeRef:[0,3]},
+    {name:'Via del Corso',time:'Centro / compras',desc:'Paseo y tiempo libre por el centro.',img:IMG.corso,routeRef:[0,4]},
+    {name:'Belvedere del Gianicolo',time:'18:00–19:30',desc:'Piazzale Giuseppe Garibaldi y mirador al atardecer.',img:IMG.gianicolo,routeRef:[1,0]},
+    {name:'Trastevere',time:'19:30+',desc:'Bajada andando, aperitivo, paseo, cena y ambiente nocturno.',img:IMG.trastevere},
+    {name:'Piazza Trilussa',time:'21:00',desc:'Final de la ruta de tarde-noche y ambiente de la plaza.',img:IMG.trastevere,routeRef:[1,1]}
+  ],routes:[
+    {label:'Ruta 1 · Mañana / tarde',mapImage:'assets/maps/routes/mar20-a.webp',mapMode:'screenshot',mapsUrl:"https://www.google.com/maps/dir/Via+Torino,+150,+00184+Roma+RM,+Italia/Palacio+Colonna,+Via+della+Pilotta,+17,+00187+Roma+RM,+Italia/Iglesia+del+Jesus,+Piazza+del+Ges%C3%B9,+00186+Roma+RM,+Italia/Campo+de'+Fiori,+00186+Roma+RM,+Italia/V.+del+Corso,+Roma+RM,+Italia/@41.8979044,12.4782046,15.5z/data=!3m1!5s0x132f604d54b5a68f:0xbe7805e973f2ea55!4m32!4m31!1m5!1m1!1s0x132f61a5bdf1499f:0x3c979b837ce73a8b!2m2!1d12.4968449!2d41.900019!1m5!1m1!1s0x132f604d4f5994a1:0x57bf866804482dd0!2m2!1d12.4847388!2d41.8975648!1m5!1m1!1s0x132f604c37825f2b:0xbd2f4ff9d307e966!2m2!1d12.4793644!2d41.8959072!1m5!1m1!1s0x132f6055a903cf7d:0x1808fc7ca708f2c4!2m2!1d12.4721757!2d41.8956045!1m5!1m1!1s0x132f6053f4560eaf:0x92dc2249ee91dd51!2m2!1d12.4794968!2d41.903214!3e2?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",stops:[
+      {name:'Hotel · Via Torino 150',time:'Salida',mapX:84.2,mapY:42.2},{name:'Palazzo Colonna',time:'Centro',mapX:52,mapY:53.5,placeIndex:2},{name:'Iglesia del Gesù',time:'Centro',mapX:41.2,mapY:60.6,placeIndex:3},{name:'Campo de’ Fiori',time:'Centro',mapX:18.7,mapY:61.3,placeIndex:4},{name:'Via del Corso',time:'Final ruta',mapX:37.3,mapY:28.7,placeIndex:5}
+    ]},
+    {label:'Ruta 2 · Tarde / noche',mapImage:'assets/maps/routes/mar20-b.webp',mapMode:'screenshot',mapsUrl:"https://www.google.com/maps/dir/Piazzale+Giuseppe+Garibaldi,+00165+Roma+RM,+Italia/Piazza+Trilussa,+Roma+RM,+Italia/@41.8902594,12.4642596,16.25z/data=!3m1!5s0x132f604d54b5a68f:0xbe7805e973f2ea55!4m14!4m13!1m5!1m1!1s0x132f606aa6faf8db:0x21b85e3c6a95418a!2m2!1d12.460789!2d41.8913049!1m5!1m1!1s0x132f6047afe5169b:0xe59bfaa3603b3c53!2m2!1d12.4702261!2d41.8917821!3e2?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",stops:[
+      {name:'Piazzale Giuseppe Garibaldi',time:'18:00',mapX:14.8,mapY:36.8,placeIndex:6},{name:'Piazza Trilussa',time:'21:00',mapX:56.8,mapY:33.6,placeIndex:8}
+    ]}
+  ]},
+
+  mie21:{date:'Miércoles 21',title:'Coliseo + Roma antigua',tag:'Roma imperial',summary:'San Pietro in Vincoli, bloque arqueológico del Coliseo y paseo hasta Piazza Venezia y Campidoglio.',route:'San Pietro in Vincoli → Coliseo / Foro / Palatino → Via dei Fori Imperiali → Vittoriano → Campidoglio → Piazza Venezia',alert:'La ruta de Google Maps incluida en el Word pasa por San Juan de Letrán, pero el propio itinerario la marca como “no da tiempo”. Por eso se conserva en el mapa de Maps, pero aparece señalada como parada no prevista.',places:[
+    {name:'San Pietro in Vincoli',time:'09:00–09:45',desc:'Moisés de Miguel Ángel antes del Coliseo.',img:IMG.vincoli,routeRef:[0,1]},
+    {name:'San Juan de Letrán',time:'No da tiempo',desc:'Aparece en la ruta de Maps del documento, pero el itinerario la descarta por falta de tiempo.',img:IMG.laterano,note:'No da tiempo',routeRef:[0,3]},
+    {name:'Coliseo · Arena',time:'11:00–14:00',desc:'Coliseo con audioguía y acceso a la Arena.',img:IMG.colosseo,routeRef:[0,2]},
+    {name:'Foro Romano',time:'11:00–14:00',desc:'Incluido en el bloque arqueológico.',img:IMG.foro},
+    {name:'Palatino',time:'11:00–14:00',desc:'Incluido en el bloque arqueológico.',img:IMG.palatino},
+    {name:'Via dei Fori Imperiali',time:'16:15–16:45',desc:'Paseo hacia Piazza Venezia.',img:IMG.foro,routeRef:[0,4]},
+    {name:'Vittoriano',time:'16:45–17:15',desc:'Monumento a Vittorio Emanuele II.',img:IMG.vittoriano,routeRef:[0,5]},
+    {name:'Piazza del Campidoglio',time:'17:20+',desc:'Plaza monumental del Campidoglio.',img:IMG.campidoglio,routeRef:[0,6]},
+    {name:'Museos Capitolinos',time:'17:20–19:20',desc:'Visita a los Museos Capitolinos.',img:IMG.capitolini},
+    {name:'Piazza Venezia',time:'19:20–20:00',desc:'Última vista al anochecer antes de volver al hotel.',img:IMG.vittoriano,routeRef:[0,7]},
+    {name:'Monti',time:'20:45+',desc:'Cena y alguna cerveza para terminar el día.',img:IMG.montinotte}
+  ],routes:[{label:'Ruta Coliseo + Campidoglio',mapImage:'assets/maps/routes/mie21.webp',mapMode:'screenshot',mapsUrl:"https://www.google.com/maps/dir/Via+Torino,+150,+00184+Roma+RM,+Italia/San+Pietro+in+Vincoli,+Piazza+di+San+Pietro+in+Vincoli,+4%2FA,+00184+Roma+RM,+Italia/Coliseo+de+Roma,+P.za+del+Colosseo,+1,+00184+Roma+RM,+Italia/Archibas%C3%ADlica+de+San+Juan+de+Letr%C3%A1n,+P.za.+San+Giovanni+In+Laterano,+00184+Roma+RM,+Italia/Via+dei+Fori+Imperiali,+Roma+RM,+Italia/Monumento+a+V%C3%ADctor+Manuel+II,+Piazza+Venezia,+00186+Roma+RM,+Italia/Campidoglio,+Piazza+del+Campidoglio,+1,+00186+Roma+RM,+Italia/Plaza+Venezia,+Roma+RM,+Italia/@41.8949593,12.4886867,15z/data=!4m50!4m49!1m5!1m1!1s0x132f61a5bdf1499f:0x3c979b837ce73a8b!2m2!1d12.4968449!2d41.900019!1m5!1m1!1s0x132f61b11e2931f5:0x323bdc76e4abd430!2m2!1d12.4931498!2d41.8937984!1m5!1m1!1s0x132f61b6532013ad:0x28f1c82e908503c4!2m2!1d12.4922309!2d41.8902102!1m5!1m1!1s0x132f61bf7fcaab73:0x130be9f915490f8!2m2!1d12.505673!2d41.8858811!1m5!1m1!1s0x132f61b3f0a39c4f:0x42f40ce9df3b57c7!2m2!1d12.487146!2d41.8932453!1m5!1m1!1s0x132f604d1b805de3:0x21154807a7b83fe1!2m2!1d12.4831269!2d41.8945976!1m5!1m1!1s0x132f604c9b68c939:0xe1efbb238bd1c51!2m2!1d12.4828018!2d41.8933592!1m5!1m1!1s0x132f604cdb03c65d:0x3129cc5d72ee9ee3!2m2!1d12.4825739!2d41.8957663!3e2?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D",stops:[
+    {name:'Hotel · Via Torino 150',time:'Salida',mapX:53.9,mapY:20.4},{name:'San Pietro in Vincoli',time:'09:00',mapX:44.1,mapY:44.4,placeIndex:0},{name:'Coliseo',time:'11:00',mapX:42.2,mapY:60.2,placeIndex:2},{name:'San Juan de Letrán',time:'No da tiempo',mapX:78.3,mapY:78.7,placeIndex:1,status:'No da tiempo'},{name:'Via dei Fori Imperiali',time:'16:15',mapX:29.5,mapY:49.1,placeIndex:5},{name:'Vittoriano',time:'16:45',mapX:18.7,mapY:35.2,placeIndex:6},{name:'Campidoglio',time:'17:20',mapX:18.7,mapY:45.4,placeIndex:7},{name:'Piazza Venezia',time:'19:20',mapX:17.8,mapY:30.6,placeIndex:9}
+  ]}]},
+
+  jue22:{date:'Jueves 22',title:'Regalos y aeropuerto',tag:'Últimas compras · vuelta',summary:'Últimas compras por Termini / Via Nazionale / Esquilino y Leonardo Express hacia Fiumicino.',route:'Termini / Esquilino → Via Nazionale → Roma Termini → Fiumicino',places:[
+    {name:'Termini / Esquilino',time:'Mañana',desc:'Últimas compras alrededor del hotel y la estación.',img:IMG.termini},{name:'Via Nazionale',time:'Mañana',desc:'Compras y último paseo antes de salir.',img:IMG.vianazionale},{name:'Roma Termini',time:'Salida',desc:'Regreso a la estación.',img:IMG.termini},{name:'Leonardo Express',time:'Salida',desc:'Tren directo a Fiumicino, 32 minutos.',img:IMG.leonardo},{name:'Fiumicino',time:'Aeropuerto',desc:'Vuelo de regreso.',img:IMG.fiumicino}
+  ],routes:[{label:'Regreso al aeropuerto',mapImage:'assets/maps/jue22.webp',mapMode:'transfer',mapBounds:REGIONAL_BOUNDS,travelMode:'transit',mapsUrl:'https://www.google.com/maps/dir/?api=1&origin=Roma+Termini&destination=Fiumicino+Airport&travelmode=transit',stops:[
+    {name:'Termini / Esquilino',time:'Mañana',lat:41.9010,lng:12.5018,placeIndex:0,mapDx:-2.1,mapDy:-1.5},{name:'Via Nazionale',time:'Mañana',lat:41.8995,lng:12.4902,placeIndex:1,mapDx:-2.2,mapDy:2.5},{name:'Roma Termini',time:'Salida',lat:41.9010,lng:12.5018,placeIndex:2,mapDx:1.2,mapDy:-.8},{name:'Leonardo Express',time:'Salida',lat:41.9010,lng:12.5018,placeIndex:3,mapDx:2.8,mapDy:2.5},{name:'Fiumicino',time:'Aeropuerto',lat:41.8003,lng:12.2389,placeIndex:4}
+  ]}]}
 };
-
-
-const mapDialog=document.getElementById('mapDialog');
-function openMapDialog(id){
-  const d=itinerary[id],index=activeStops[id]??0;if(!d)return;
-  mapDialog.dataset.day=id;
-  mapDialog.querySelector('[data-dialog-title]').textContent=`${d.date} · ${d.title}`;
-  const host=mapDialog.querySelector('[data-dialog-map]');
-  host.classList.toggle('transfer-dialog',d.mapMode==='transfer');
-  const coords=d.places.map(p=>pointOnMap(p,d.mapBounds));
-  host.innerHTML=`<div class="map-stage" style="${stageStyle(id)}"><img class="static-map-image" src="${d.mapImage}" alt="Mapa ampliado de ${d.date}">${coords.map((c,i)=>`<button class="static-marker${i===index?' is-active':''}" type="button" data-dialog-stop="${i}" style="left:${c.x}%;top:${c.y}%" aria-label="${i+1}. ${d.places[i].name}">${i+1}</button>`).join('')}</div>`;
-  host.querySelectorAll('[data-dialog-stop]').forEach((m,i)=>m.addEventListener('click',()=>activateStop(id,i)));
-  mapDialog.querySelector('[data-dialog-selected]').innerHTML=selectedStopMarkup(d,index);
-  if(typeof mapDialog.showModal==='function')mapDialog.showModal();else mapDialog.setAttribute('open','');
-}
-mapDialog.querySelector('.map-dialog-close').addEventListener('click',()=>mapDialog.close());
-mapDialog.addEventListener('click',e=>{if(e.target===mapDialog)mapDialog.close()});
 
 const panels=document.getElementById('panels');
+const mapDialog=document.getElementById('mapDialog');
+const routeState={};
+const stopState={};
 function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
-function pointOnMap(p,b){
-  const x=(p.lng-b.west)/(b.east-b.west)*100+(p.mapDx||0),y=(b.north-p.lat)/(b.north-b.south)*100+(p.mapDy||0);
-  return {x:clamp(x,2.4,97.6),y:clamp(y,5.2,91.5)};
+function pointOnRoute(s,r){
+  if(Number.isFinite(s.mapX)&&Number.isFinite(s.mapY))return {x:s.mapX,y:s.mapY};
+  const b=r.mapBounds;if(!b||!Number.isFinite(s.lat)||!Number.isFinite(s.lng))return {x:50,y:50};
+  const x=(s.lng-b.west)/(b.east-b.west)*100+(s.mapDx||0),y=(b.north-s.lat)/(b.north-b.south)*100+(s.mapDy||0);
+  return {x:clamp(x,2.8,97.2),y:clamp(y,5,92)};
 }
-function directionsUrl(d){
-  const pts=d.places;const origin=`${pts[0].lat},${pts[0].lng}`,dest=`${pts.at(-1).lat},${pts.at(-1).lng}`,waypoints=pts.slice(1,-1).map(p=>`${p.lat},${p.lng}`).join('|');
-  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}${waypoints?`&waypoints=${encodeURIComponent(waypoints)}`:''}&travelmode=${encodeURIComponent(d.travelMode||'walking')}`
+function fallbackDirections(r){
+  const pts=r.stops.filter(s=>Number.isFinite(s.lat)&&Number.isFinite(s.lng));if(pts.length<2)return '#';
+  const origin=`${pts[0].lat},${pts[0].lng}`,dest=`${pts.at(-1).lat},${pts.at(-1).lng}`,waypoints=pts.slice(1,-1).map(p=>`${p.lat},${p.lng}`).join('|');
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(dest)}${waypoints?`&waypoints=${encodeURIComponent(waypoints)}`:''}&travelmode=${encodeURIComponent(r.travelMode||'walking')}`;
 }
-function card(p,i){
+function mapsUrl(r){return r.mapsUrl||fallbackDirections(r)}
+function routeKey(dayId,routeIndex){return `${dayId}:${routeIndex}`}
+function selectedStopMarkup(r,index=0){const s=r.stops[index];return `<div class="selected-stop-card"><span class="selected-stop-num">${index+1}</span><div class="selected-stop-copy"><strong>${s.name}${s.status?` · ${s.status}`:''}</strong><span>${s.time||''}</span></div></div>`}
+function markerMarkup(r,active=0,dialog=false){return r.stops.map((s,i)=>{const p=pointOnRoute(s,r);return `<button class="static-marker${i===active?' is-active':''}${s.status?' optional-marker':''}" type="button" data-${dialog?'dialog-':''}stop="${i}" style="left:${p.x}%;top:${p.y}%" aria-label="${i+1}. ${s.name}">${i+1}</button>`}).join('')}
+function placeCard(p,i){
   const media=p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.closest('.place').classList.add('fallback');this.remove()">`:`<span class="place-icon" aria-hidden="true">📍</span>`;
-  const opt=p.optional?'<span class="place-optional">Opcional</span>':'';
-  return `<article class="place${p.img?'':' fallback'}" data-place-stop="${i}" tabindex="0" role="button" aria-label="Seleccionar ${i+1}. ${p.name}"><span class="place-index">${i+1}</span>${opt}${media}<div class="place-body"><span class="time">${p.time}</span><h3>${p.name}</h3><p>${p.desc}</p></div></article>`
+  const ref=p.routeRef?` data-place-route="${p.routeRef[0]}" data-place-stop="${p.routeRef[1]}" tabindex="0" role="button"`:'';
+  return `<article class="place${p.img?'':' fallback'}"${ref}><span class="place-index">${i+1}</span>${p.note?`<span class="place-note">${p.note}</span>`:''}${media}<div class="place-body"><span class="time">${p.time}</span><h3>${p.name}</h3><p>${p.desc}</p></div></article>`
 }
-const mobileMapView={
-  sab17:{zoom:1,shiftX:0,shiftY:0},
-  dom18:{zoom:1,shiftX:0,shiftY:0},
-  lun19:{zoom:1.25,shiftX:22,shiftY:0},
-  mar20:{zoom:1,shiftX:0,shiftY:0},
-  mie21:{zoom:1,shiftX:0,shiftY:0},
-  jue22:{zoom:1,shiftX:0,shiftY:0}
-};
-const activeStops={};
-function stageStyle(id){const v=mobileMapView[id]||{};return `--mobile-zoom:${v.zoom||1};--mobile-shift-x:${v.shiftX||0}%;--mobile-shift-y:${v.shiftY||0}%`}
-function selectedStopMarkup(d,index=0){const p=d.places[index];return `<div class="selected-stop-card"><span class="selected-stop-num">${index+1}</span><div class="selected-stop-copy"><strong>${p.name}${p.optional?' · opcional':''}</strong><span>${p.time} · ${p.desc}</span></div></div>`}
+function routeSlide(dayId,r,ri){
+  const key=routeKey(dayId,ri),active=stopState[key]||0;
+  const screenshot=r.mapMode==='screenshot';
+  const steps=r.stops.map((s,i)=>`<li class="route-step${s.status?' route-muted':''}${i===active?' is-active':''}" data-route-stop="${i}" tabindex="0" role="button"><span class="step-num">${i+1}</span><span><span class="step-name">${s.name}${s.status?`<span class="route-status">${s.status}</span>`:''}</span><span class="step-time">${s.time||''}</span></span></li>`).join('');
+  return `<div class="route-slide" data-route-slide="${ri}"><div class="route-layout"><div class="map-column"><div class="map-card${screenshot?' route-screenshot':''}"><div class="static-map ${r.mapMode==='transfer'?'transfer-map':'city-map'}" aria-label="Mapa de ${r.label}"><div class="map-stage"><img class="static-map-image" src="${r.mapImage}" alt="Mapa de ${r.label}" loading="lazy">${markerMarkup(r,active,false)}</div></div></div><div class="selected-stop-wrap" data-selected-stop>${selectedStopMarkup(r,active)}</div><div class="map-toolbar"><button class="route-btn" type="button" data-expand-route="${ri}">⛶ Ampliar mapa</button><a class="route-btn" href="${mapsUrl(r)}" target="_blank" rel="noopener">↗ Ver esta ruta en Google Maps</a></div></div><aside class="steps-card"><span class="route-badge">Ruta ${ri+1} · ${r.label}</span><h4 class="steps-title">Orden en Google Maps</h4><ol class="route-steps">${steps}</ol><p class="route-source-note">El orden de esta lista sigue el enlace de Google Maps incluido en vuestro itinerario.</p></aside></div></div>`
+}
+function routesBlock(dayId,d){
+  routeState[dayId]=routeState[dayId]||0;d.routes.forEach((r,i)=>stopState[routeKey(dayId,i)]=stopState[routeKey(dayId,i)]||0);
+  const slides=d.routes.map((r,i)=>routeSlide(dayId,r,i)).join('');
+  const multi=d.routes.length>1;
+  return `<div class="route-carousel" data-carousel="${dayId}"><div class="route-carousel-head"><div class="route-carousel-title"><small>${multi?'Dos recorridos independientes':'Ruta de Google Maps'}</small><strong data-route-title>${d.routes[0].label}</strong></div><span class="route-count" data-route-count>1 / ${d.routes.length}</span></div><div class="route-viewport"><div class="route-track" data-route-track>${slides}</div><button class="route-arrow prev" type="button" data-route-prev aria-label="Ruta anterior" ${multi?'':'hidden'}>‹</button><button class="route-arrow next" type="button" data-route-next aria-label="Ruta siguiente" ${multi?'':'hidden'}>›</button></div>${multi?`<div class="route-pager">${d.routes.map((_,i)=>`<button class="route-dot${i===0?' is-active':''}" type="button" data-route-dot="${i}" aria-label="Ver ruta ${i+1}"></button>`).join('')}</div>`:''}</div>`
+}
 
-function staticMapBlock(id,d){
-  const coords=d.places.map(p=>pointOnMap(p,d.mapBounds));
-  const markers=coords.map((c,i)=>{const p=d.places[i];return `<button class="static-marker${p.optional?' optional-marker':''}" type="button" data-map-stop="${i}" style="left:${c.x}%;top:${c.y}%" aria-label="${i+1}. ${p.name}" title="${p.name}">${i+1}</button>`}).join('');
-  const steps=d.places.map((p,i)=>`<li class="route-step" data-stop="${i}" tabindex="0" role="button" aria-label="Seleccionar ${i+1}. ${p.name}"><span class="step-num">${i+1}</span><span><span class="step-name">${p.name}${p.optional?'<span class="optional-tag">opcional</span>':''}</span><span class="step-time">${p.time}</span></span></li>`).join('');
-  return `<div class="route-layout"><div class="map-column"><div class="map-card"><div class="static-map ${d.mapMode==='transfer'?'transfer-map':'city-map'}" id="map-${id}" aria-label="Mapa estático de la ruta ${d.date}"><div class="map-stage" style="${stageStyle(id)}"><img class="static-map-image" src="${d.mapImage}" alt="Mapa de la ruta del ${d.date}" loading="lazy">${markers}</div></div></div><div class="selected-stop-wrap" data-selected-stop>${selectedStopMarkup(d,0)}</div><div class="map-toolbar"><button class="route-btn" type="button" data-expand-map="${id}">⛶ Ampliar mapa</button><a class="route-btn" href="${directionsUrl(d)}" target="_blank" rel="noopener">↗ Ver en Google Maps</a></div></div><aside class="steps-card"><h4 class="steps-title">Orden de la ruta</h4><ol class="route-steps">${steps}</ol><p class="route-tip">Pulsa un número, una parada o una tarjeta para resaltarla en el mapa. La ruta navegable se abre en Google Maps.</p></aside></div>`
-}
 Object.entries(itinerary).forEach(([id,d],idx)=>{
   const section=document.createElement('section');section.className='day-panel';section.id=`panel-${id}`;section.setAttribute('role','tabpanel');section.setAttribute('aria-labelledby',`tab-${id}`);if(idx)section.hidden=true;
-  section.innerHTML=`<header class="day-summary"><div><p class="day-date">${d.date}</p><h3 class="day-title">${d.title}</h3><p class="day-route">${d.summary}</p><div class="day-meta"><span class="meta-pill"><strong>${d.places.length}</strong> paradas</span><span class="meta-pill">📍 ${d.route}</span></div></div><span class="day-tag">${d.tag}</span></header>${staticMapBlock(id,d)}<div class="places-head"><h4>Lugares del día</h4><span>Las tarjetas siguen la numeración del mapa</span></div><div class="places">${d.places.map(card).join('')}</div><div class="day-foot"><span class="source-note"><span class="source-dot"></span>Resumen visual basado en vuestro itinerario</span><span>Mapa estático · ruta real en Google Maps</span></div>`;
+  section.innerHTML=`<header class="day-summary"><div><p class="day-date">${d.date}</p><h3 class="day-title">${d.title}</h3><p class="day-route">${d.summary}</p><div class="day-meta"><span class="meta-pill"><strong>${d.places.length}</strong> lugares</span><span class="meta-pill">📍 ${d.route}</span></div>${d.alert?`<div class="day-alert"><strong>Nota del itinerario:</strong> ${d.alert}</div>`:''}</div><span class="day-tag">${d.tag}</span></header>${routesBlock(id,d)}<div class="places-head"><h4>Lugares del día</h4><span>Ordenados según el itinerario actualizado</span></div><div class="places">${d.places.map(placeCard).join('')}</div><div class="day-foot"><span class="source-note"><span class="source-dot"></span>Rutas y paradas revisadas con el Word actualizado</span><span>${d.routes.length>1?'2 rutas de Google Maps':'Ruta de Google Maps'} · mapas estáticos</span></div>`;
   panels.appendChild(section)
 });
-function activateStop(id,index){
-  const panel=document.getElementById(`panel-${id}`),d=itinerary[id];if(!panel||!d||!d.places[index])return;
-  activeStops[id]=index;
-  panel.querySelectorAll('.static-marker').forEach((el,i)=>el.classList.toggle('is-active',i===index));
-  panel.querySelectorAll('.route-step').forEach((el,i)=>el.classList.toggle('is-active',i===index));
-  panel.querySelectorAll('[data-place-stop]').forEach((el,i)=>el.classList.toggle('is-active-place',Number(el.dataset.placeStop)===index));
-  const selected=panel.querySelector('[data-selected-stop]');if(selected)selected.innerHTML=selectedStopMarkup(d,index);
-  if(mapDialog.open&&mapDialog.dataset.day===id){
-    mapDialog.querySelectorAll('.static-marker').forEach((el,i)=>el.classList.toggle('is-active',i===index));
-    const sel=mapDialog.querySelector('[data-dialog-selected]');if(sel)sel.innerHTML=selectedStopMarkup(d,index);
-  }
+
+function setRoute(dayId,index){
+  const d=itinerary[dayId],panel=document.getElementById(`panel-${dayId}`);if(!d||!panel)return;
+  index=(index+d.routes.length)%d.routes.length;routeState[dayId]=index;
+  const track=panel.querySelector('[data-route-track]');if(track)track.style.transform=`translateX(-${index*100}%)`;
+  panel.querySelector('[data-route-title]').textContent=d.routes[index].label;panel.querySelector('[data-route-count]').textContent=`${index+1} / ${d.routes.length}`;
+  panel.querySelectorAll('[data-route-dot]').forEach((dot,i)=>dot.classList.toggle('is-active',i===index));
 }
-function bindSelectable(el,id,index){
-  el.addEventListener('click',()=>activateStop(id,index));
-  el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activateStop(id,index)}})
+function activateRouteStop(dayId,routeIndex,stopIndex){
+  const d=itinerary[dayId],panel=document.getElementById(`panel-${dayId}`);if(!d||!panel)return;setRoute(dayId,routeIndex);
+  const r=d.routes[routeIndex],slide=panel.querySelector(`[data-route-slide="${routeIndex}"]`);if(!r||!slide||!r.stops[stopIndex])return;
+  stopState[routeKey(dayId,routeIndex)]=stopIndex;
+  slide.querySelectorAll('.static-marker').forEach((el,i)=>el.classList.toggle('is-active',i===stopIndex));slide.querySelectorAll('.route-step').forEach((el,i)=>el.classList.toggle('is-active',i===stopIndex));
+  const selected=slide.querySelector('[data-selected-stop]');if(selected)selected.innerHTML=selectedStopMarkup(r,stopIndex);
+  panel.querySelectorAll('.place').forEach(el=>el.classList.remove('is-active-place'));
+  const pi=r.stops[stopIndex].placeIndex;if(Number.isInteger(pi))panel.querySelectorAll('.place')[pi]?.classList.add('is-active-place');
+  if(mapDialog.open&&mapDialog.dataset.day===dayId&&Number(mapDialog.dataset.route)===routeIndex){mapDialog.querySelectorAll('.static-marker').forEach((el,i)=>el.classList.toggle('is-active',i===stopIndex));mapDialog.querySelector('[data-dialog-selected]').innerHTML=selectedStopMarkup(r,stopIndex)}
 }
-Object.keys(itinerary).forEach(id=>{
-  const panel=document.getElementById(`panel-${id}`);if(!panel)return;
-  panel.querySelectorAll('.static-marker').forEach((m,i)=>bindSelectable(m,id,i));
-  panel.querySelectorAll('.route-step').forEach((s,i)=>bindSelectable(s,id,i));
-  panel.querySelectorAll('[data-place-stop]').forEach((c,i)=>bindSelectable(c,id,Number(c.dataset.placeStop)));
-  panel.querySelector('[data-expand-map]')?.addEventListener('click',()=>openMapDialog(id));
-  activateStop(id,0)
-});
+function bindRouteUI(dayId){
+  const d=itinerary[dayId],panel=document.getElementById(`panel-${dayId}`);if(!d||!panel)return;
+  panel.querySelector('[data-route-prev]')?.addEventListener('click',()=>setRoute(dayId,(routeState[dayId]||0)-1));panel.querySelector('[data-route-next]')?.addEventListener('click',()=>setRoute(dayId,(routeState[dayId]||0)+1));panel.querySelectorAll('[data-route-dot]').forEach((dot,i)=>dot.addEventListener('click',()=>setRoute(dayId,i)));
+  d.routes.forEach((r,ri)=>{const slide=panel.querySelector(`[data-route-slide="${ri}"]`);slide.querySelectorAll('[data-stop]').forEach((m,i)=>m.addEventListener('click',()=>activateRouteStop(dayId,ri,i)));slide.querySelectorAll('[data-route-stop]').forEach((s,i)=>{s.addEventListener('click',()=>activateRouteStop(dayId,ri,i));s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activateRouteStop(dayId,ri,i)}})});slide.querySelector('[data-expand-route]')?.addEventListener('click',()=>openMapDialog(dayId,ri));});
+  panel.querySelectorAll('.place').forEach(el=>{const ri=Number(el.dataset.placeRoute),si=Number(el.dataset.placeStop);if(Number.isInteger(ri)&&Number.isInteger(si)){el.addEventListener('click',()=>activateRouteStop(dayId,ri,si));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activateRouteStop(dayId,ri,si)}})}})
+}
+Object.keys(itinerary).forEach(bindRouteUI);
+
+function openMapDialog(dayId,routeIndex){
+  const d=itinerary[dayId],r=d?.routes[routeIndex];if(!r)return;const active=stopState[routeKey(dayId,routeIndex)]||0;
+  mapDialog.dataset.day=dayId;mapDialog.dataset.route=routeIndex;mapDialog.querySelector('[data-dialog-title]').textContent=`${d.date} · ${r.label}`;
+  const host=mapDialog.querySelector('[data-dialog-map]');host.classList.toggle('transfer-dialog',r.mapMode==='transfer');host.innerHTML=`<div class="map-stage"><img class="static-map-image" src="${r.mapImage}" alt="Mapa ampliado de ${r.label}">${markerMarkup(r,active,true)}</div>`;host.querySelectorAll('[data-dialog-stop]').forEach((m,i)=>m.addEventListener('click',()=>activateRouteStop(dayId,routeIndex,i)));mapDialog.querySelector('[data-dialog-selected]').innerHTML=selectedStopMarkup(r,active);if(typeof mapDialog.showModal==='function')mapDialog.showModal();else mapDialog.setAttribute('open','')
+}
+mapDialog.querySelector('.map-dialog-close').addEventListener('click',()=>mapDialog.close());mapDialog.addEventListener('click',e=>{if(e.target===mapDialog)mapDialog.close()});
+
 const tabs=[...document.querySelectorAll('.day-tab')];
-function selectDay(id,scroll=false){
-  tabs.forEach(t=>{const active=t.dataset.day===id;t.setAttribute('aria-selected',active);t.tabIndex=active?0:-1});
-  document.querySelectorAll('.day-panel').forEach(p=>p.hidden=p.id!==`panel-${id}`);
-  if(scroll)document.getElementById('itinerario').scrollIntoView({behavior:'smooth',block:'start'});
-  history.replaceState(null,'',`#${id}`)
-}
+function selectDay(id,scroll=false){tabs.forEach(t=>{const active=t.dataset.day===id;t.setAttribute('aria-selected',active);t.tabIndex=active?0:-1});document.querySelectorAll('.day-panel').forEach(p=>p.hidden=p.id!==`panel-${id}`);if(scroll)document.getElementById('itinerario').scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',`#${id}`)}
 tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectDay(tab.dataset.day));tab.addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;e.preventDefault();const next=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[next].focus();selectDay(tabs[next].dataset.day)})});
 const hash=location.hash.slice(1);selectDay(itinerary[hash]?hash:'sab17');
 </script></body></html>
